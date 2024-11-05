@@ -1,0 +1,7 @@
+<div >
+    <h2>category create</h2>
+    <form [formGroup]="form" (ngSubmit)="create_tag()">
+        <input type="text" id="name" formControlName="name" placeholder="add tag" required><br>
+        <button>submit</button>
+    </form>
+</div>
