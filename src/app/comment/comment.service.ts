@@ -4,39 +4,12 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-
-
-interface User {
-  id: number;
-  email: string;
-}
-
-interface LoginResponse {
-  token: string;
-}
-
-interface RegisterResponse {
-  message: string;
-  user: User;
-}
-
-interface Post {
-  id: number;
-  title: string;
-  content: string;
-  description: string;
-  file_type: string;
-  file_path: string;
-  user_id: string;
-  category_id: string;
-  post_type: string;
-}
-
+import { Comment } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService {
+export class CommentService {
 
   private currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<any>;
@@ -61,17 +34,25 @@ export class ApiService {
     return throwError(errorMessage);
   }
 
+  create(id: number, data: any): Observable<any> {
+    console.log("Comment Data:", data, "Post ID:", id);
 
- getUser(): Observable<any> {
-  const headers = this.createAuthorizationHeader();  
-  return this.http.get(`${this.apiUrl}/user`, { headers });  
-}
-  
+    const headers = this.createAuthorizationHeader();
+
+    return this.http.post(`${this.apiUrl}/posts/${id}/comment`, data, { headers })
+      .pipe(catchError(this.handleError)); 
   }
 
+  updateComment(id: number, commentId: number, content: string): Observable<any> {
+    const headers = this.createAuthorizationHeader();
+    return this.http.put(`${this.apiUrl}/posts/${id}/comment/${commentId}`, { content }, { headers })
+      .pipe(catchError(this.handleError));
+  }
+  
+  delete(){
 
-
-
-
-
-
+  }
+  show(){
+    
+  }
+}
