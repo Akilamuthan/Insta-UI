@@ -1,0 +1,54 @@
+<app-header></app-header>
+
+
+<div class="container mt-4 position-absolute start-0" style="width: 500px;">
+  <div *ngFor="let report of reports" class="card mb-3">
+
+
+    <div class="card-body" >
+      <h5 class="card-title">Report Details</h5>
+      <p class="card-text">
+        <strong>Reason:</strong> {{ report.reason }}
+      </p>
+      <p class="card-text">
+        <strong>Status:</strong> {{ report.status }}
+      </p>
+      <p class="card-text">
+        <strong>Reportable ID:</strong> {{ report.reportable_id }}
+      </p>
+      <p class="card-text">
+        <strong>Reportable Type:</strong> {{ report.reportable_type }}
+      </p>
+
+      <!-- Only show status change form if report is not approved or rejected -->
+      <div *ngIf="report.status !== 'approved' && report.status !== 'rejected'" style="width: 300px;">
+        <div class="container mt-4">
+          <form [formGroup]="form" (ngSubmit)="changeStatus(report.id)" class="card p-4 shadow-sm">
+            <div class="form-group">
+              <label for="statusSelect" class="form-label">Select a Status</label>
+              <select id="statusSelect" formControlName="status" class="form-control">
+                <option value="" disabled selected>Select a status</option>
+                <option value="approved">Approved</option>
+                <option value="rejected">Rejected</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-outline-info mt-3" [disabled]="form.invalid">Change Status</button>
+          </form>
+        </div>
+      </div>
+
+      
+      <div *ngIf="report.reportable_type === 'App\Models\Comment'">
+       
+        <p>Additional information for Comment report...</p>
+      </div>
+
+      <div *ngIf="report.reportable_type === 'App\Models\Post'">
+      
+        <p>Additional information for Post report...</p>
+      </div>
+    </div>
+
+
+  </div>
+</div>

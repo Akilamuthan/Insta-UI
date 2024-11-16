@@ -1,0 +1,113 @@
+/* General button styles */
+button {
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  margin: 5px;
+}
+h2{
+  text-align: center;
+}
+button:focus {
+  outline: none; /* Remove the outline on focus for better aesthetics */
+}
+
+/* Category buttons */
+.category-update {
+  background-color: #2196F3;
+  color: white;
+}
+
+.category-update:hover {
+  background-color: #1e88e5;
+  border-color: #1976d2;
+}
+
+.category-delete {
+  background-color: #FF9800;
+  color: white;
+}
+
+.category-delete:hover {
+  background-color: #fb8c00;
+  border-color: #f57c00;
+}
+
+/* Tag buttons */
+.tag-update {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.tag-update:hover {
+  background-color: #45a049;
+  border-color: #3e8e41;
+}
+
+.tag-delete {
+  background-color: #f44336;
+  color: white;
+}
+
+.tag-delete:hover {
+  background-color: #e53935;
+  border-color: #d32f2f;
+}
+
+/* Category and Tag container styles */
+.category-item, .tag-item {
+  display: flex;
+  justify-content: space-between; /* Space between name and buttons */
+  align-items: center; /* Vertically center the content */
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  background-color: #f9f9f9;
+  width: 100%;
+  max-width: 600px; /* Limit max width for better layout */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.category-item:hover, .tag-item:hover {
+  background-color: #f1f1f1;
+}
+
+/* Category name and tag name */
+.category-name, .tag-name {
+  font-size: 16px;
+  font-weight: 600;
+  flex: 1; /* Take up available space */
+  text-align: left; /* Align name to the left */
+}
+
+/* Button container (to align buttons to the right) */
+.category-buttons, .tag-buttons {
+  display: flex;
+  gap: 10px; /* Space between buttons */
+  justify-content: flex-end; /* Align buttons to the right */
+}
+
+/* Make the buttons and container responsive */
+@media (max-width: 600px) {
+  .category-item, .tag-item {
+    flex-direction: column; /* Stack content vertically */
+    align-items: flex-start; /* Align items to the left */
+    width: 100%;
+  }
+
+  .category-buttons, .tag-buttons {
+    width: 100%; /* Make the button containers full width */
+    justify-content: flex-start; /* Align buttons to the left */
+    margin-top: 10px;
+  }
+
+  .category-name, .tag-name {
+    margin-bottom: 10px; /* Add space between name and buttons on small screens */
+  }
+}

@@ -1,0 +1,114 @@
+/* General styling for the body */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  display: flex;
+}
+
+/* Side Navigation Bar Styles */
+.side-nav {
+  background-color: #333; /* Dark background */
+  color: white;
+  width: 200px;  /* Fixed width for side navigation */
+  height: 100vh; /* Full height */
+  position: fixed;  /* Keep it fixed on the left */
+  top: 0;
+  left: 0;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Header inside the side nav */
+.nav-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.nav-header h2 {
+  font-size: 1.5rem;
+  margin: 0;
+  color: #fff;
+}
+
+/* Navigation Links */
+.nav-links {
+  list-style: none;
+  padding: 0;
+}
+
+.nav-links li {
+  margin: 10px 0;
+}
+
+.nav-links li a {
+  text-decoration: none;
+}
+
+.nav-button {
+  background-color: #007BFF; /* Button background color */
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  width: 100%;  /* Make the buttons take full width */
+  border: none;
+  border-radius: 5px;
+  text-align: left; /* Align text to the left */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover effect for buttons */
+.nav-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  transform: scale(1.05);     /* Slight enlargement on hover */
+}
+
+/* Active link (current route) */
+.active-link .nav-button {
+  background-color: #28a745; /* Green color for active link */
+}
+
+/* Main content area to the right of the side nav */
+.main-content {
+  margin-left: 250px; /* Space for the side nav */
+  padding: 20px;
+  width: 100%;
+}
+
+/* Mobile responsiveness: side nav becomes a top navbar */
+@media (max-width: 768px) {
+  .side-nav {
+    position: relative;
+    width: 100%;
+    height: auto;
+    box-shadow: none;
+  }
+
+  .main-content {
+    margin-left: 0;
+  }
+
+  .nav-button {
+    width: auto; /* Buttons are no longer full width */
+  }
+
+  /* Collapsing the menu into a top nav bar on mobile */
+  .nav-links {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .nav-links li {
+    margin: 0;
+  }
+
+  .side-nav {
+    display: none; /* Hide side nav on mobile */
+  }
+
+  .main-content {
+    padding-top: 60px; /* Adjust padding for mobile */
+  }
+}
