@@ -1,0 +1,16 @@
+.social-link {
+    display: block;
+    color: white;
+    margin: 5px 0;
+    text-decoration: none;
+  }
+  
+  .social-link:hover {
+    color: #D14200; /* Change color on hover */
+  }
+  
+  .text-blue:hover {
+    color: #D14200; /* Change color for Privacy Policy & Terms links */
+  }
+  
+  

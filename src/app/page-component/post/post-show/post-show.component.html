@@ -1,0 +1,84 @@
+<nav  style="height:50px; position: relative; top: -10px; text-align: center;">
+
+  <form [formGroup]="forms" (ngSubmit)="pericularpost()">
+    <div class="input-group" style="width: 500px; position: absolute; left: 300px;">
+      <input type="text" class="form-control" placeholder="search"   aria-label="Recipient's username" 
+        aria-describedby="button-addon2" 
+        formControlName="data" 
+        id="data" 
+        required
+      >
+      <button class="btn btn-outline-secondary" type="submit" id="button-addon2">search</button>
+    </div>
+  </form>
+  
+  <div id="button" class="d-flex position-absolute end-0 " style="position: absolute; top: 5px; display: inline;">
+        <select [(ngModel)]="selectedCategory" (change)="getCategory(selectedCategory)" class="form-select bg-transparent  border-0" aria-label="Category" style="font-family: Georgia, 'Times New Roman', Times, serif;">
+
+       <option value="">Select a Category</option>
+
+       <option *ngFor="let category of categories" [value]="category.id"  >{{ category.slug }}</option>
+
+    </select>
+</div>
+</nav>
+
+<br><br>
+<div *ngIf="show"  style="text-align: center; padding: 20px; font-style: small-caps;  opacity: 0; " class="content">
+  <h5 style="font-family: Georgia, 'Times New Roman', Times, serif;">
+    Welcome to Our Website!
+  </h5>
+  <p style="font-size: 18px;  margin-top: 10px;">
+    Enjoy the best experience while browsing our site, designed with you in mind. 
+    We are committed to offering seamless navigation, valuable content, and responsive support. 
+    Let us guide you through an incredible journey!
+  </p>
+</div>
+
+
+<br><br><br><br><br><br>
+<div >
+  <div *ngIf="posts.length===0">
+    <h4 style="font-family: Georgia, 'Times New Roman', Times, serif; text-align: center;">No posts available</h4>
+  </div>
+  <section class="content-area ml-6 position-relative start-0">
+    <div class="row row-cols-1 row-cols-md-4 g-3">
+
+      <div  *ngFor="let post of posts" class="col ">
+        <div  [routerLink]="['/posts/separate-posts', post.id]"class="card sharp-card" style="width: 18rem;">
+
+   
+      <img *ngIf="post.file_type === 'image'" [src]="imageUrl + post.file_path" alt="Post Image" class="card-img-top sharp-card" style="width: 285px; height: 200px;">
+
+
+      <video *ngIf="post.file_type === 'video'" [src]="imageUrl + post.file_path" class="card-img-top sharp-card" style="width: 285px; height: 200px;" controls>
+       Your browser does not support the video tag.
+       </video>
+
+
+
+          <div class="card-body">
+            <h6 class="card-title" style="font-family: Georgia, 'Times New Roman', Times, serif;">{{ post.title }}</h6>
+            <p class="card-text" style="font-family: Georgia, 'Times New Roman', Times, serif;">Description: {{ post.description }}</p>
+            <p class="card-text" style="font-family: Georgia, 'Times New Roman', Times, serif;">Content: {{ post.content }}</p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div *ngIf="show" class="content" style="text-align: center; padding: 20px; font-style: small-caps; ">
+  <h5 style="font-family: Georgia, 'Times New Roman', Times, serif;">
+    Thank you for watching!
+  </h5>
+</div>
+
+
+
+ 
+
+
+
+

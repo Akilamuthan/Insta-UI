@@ -1,0 +1,28 @@
+<a routerLink="/category/create">
+  <button class="btn btn-outline-primary">Create category</button>
+</a>
+<a routerLink="/admin">
+  <button class="btn btn-outline-primary">Admin</button>
+</a>
+
+<h2>Categories</h2>
+
+<table class="table   text-dark" style="background-color: transparent;" style="background-color: transparent;">
+  <thead style="background-color: transparent;" style="background-color: transparent;">
+    <tr style="background-color: transparent;">
+      <th scope="col" style="background-color: transparent;">No.</th>
+      <th scope="col" style="background-color: transparent;">Category Name</th>
+      <th scope="col" style="background-color: transparent;">Actions</th>
+    </tr>
+  </thead>
+  <tbody style="background-color: transparent;">
+    <tr *ngFor="let categories of categories; let i = index" style="background-color: transparent;">
+      <th scope="row" style="background-color: transparent;">{{ i + 1 }}</th>
+      <td style="background-color: transparent;">{{ categories.slug }}</td>
+      <td style="background-color: transparent;">
+        <button class="btn btn-outline-primary" (click)="categoryUpdate(categories.id)">Update</button>
+        <button class="btn btn-outline-primary" (click)="categoryDelete(categories.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

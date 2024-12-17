@@ -1,0 +1,111 @@
+<div class="container">
+  <h2>post create
+    
+  </h2>
+  <form [formGroup]="form" (ngSubmit)="sendData()">
+
+    <div class="form-group">
+      <label for="post_type">Post Type:</label>
+      <input id="post_type" formControlName="post_type" required>
+     
+      <div *ngIf="form.get('post_type')?.invalid && (form.get('post_type')?.touched || form.get('post_type')?.dirty)" style="color: red;">
+        post_type is required.
+      </div>
+
+    </div>
+
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input id="title" formControlName="title" required> 
+     <div *ngIf="form.get('title')?.invalid && (form.get('title')?.touched || form.get('title')?.dirty)" style="color: red;">
+      title is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="content">Content:</label>
+      <input id="content" formControlName="content" required>
+      <div *ngIf="form.get('content')?.invalid && (form.get('content')?.touched || form.get('content')?.dirty)" style="color: red;">
+        Content is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <input id="description" formControlName="description" required>
+      <div *ngIf="form.get('description')?.invalid && (form.get('description')?.touched || form.get('description')?.dirty)" style="color: red;">
+        description is required.
+      </div>
+    </div>
+
+    
+
+    <div class="form-group">
+      <label for="category_id">category:</label>
+      <select   class="form-select  border-0" aria-label="Category" style="font-family: Georgia, 'Times New Roman', Times, serif;" formControlName="category_id">
+
+        <option value="">Select a Category</option>
+ 
+        <option *ngFor="let category of categories" [value]="category.id"   >{{ category.slug }}</option>
+ 
+     </select>
+      <div *ngIf="form.get('category_id')?.invalid && (form.get('category_id')?.touched || form.get('category_id')?.dirty)" style="color: red;">
+        category is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="tag_id">tag:</label>
+      <select   class="form-select  border-0" aria-label="Category" style="font-family: Georgia, 'Times New Roman', Times, serif;" formControlName="tag_id">
+
+        <option value="">Select a tags</option>
+ 
+        <option *ngFor="let tag of tags" [value]="tag.id"   >{{ tag.slug }}</option>
+ 
+     </select>
+      <div *ngIf="form.get('tag_id')?.invalid && (form.get('tag_id')?.touched || form.get('tag_id')?.dirty)" style="color: red;">
+        tag is required.
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <label for="file_type">File Type:</label>
+
+      <select   class="form-select  border-0" aria-label="Category" style="font-family: Georgia, 'Times New Roman', Times, serif;" formControlName="file_type" >
+
+        <option value="">Select a file tye</option>
+ 
+        <option value="video">Video</option>
+        <option value="image">Image</option>
+ 
+     </select>
+      
+      <div *ngIf="form.get('file_type')?.invalid && (form.get('file_type')?.touched || form.get('file_type')?.dirty)" style="color: red;">
+        file_type is required.
+      </div>
+    </div>
+
+
+
+    <div class="form-group">
+      <label for="file_path">File Path:</label>
+      <input type="file" formControlName="file_path" (change)="onFileSelected($event)" />
+
+      <div *ngIf="form.get('file_path')?.invalid && (form.get('file_path')?.touched || form.get('file_path')?.dirty)" style="color: red;">
+        file_path is required.
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="form.invalid || loading">Send Data</button>
+
+    <div *ngIf="loading">Sending data...</div><br>
+    <br>
+    <a routerLink="/home">home</a>
+  </form>
+</div>
+
+
+
+
+

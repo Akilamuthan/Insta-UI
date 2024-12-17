@@ -1,0 +1,31 @@
+
+<a routerLink="/tags/create">
+  <button class="btn btn-outline-primary">Create Tag</button>
+</a>
+<a routerLink="/admin">
+  <button class="btn btn-outline-primary">Admin</button>
+</a>
+
+<h2>Tags</h2>
+
+<table class="table" style="background-color: transparent;">
+  <thead style="background-color: transparent;">
+    <tr style="background-color: transparent;">
+      <th scope="col" style="background-color: transparent;">No.</th>
+      <th scope="col" style="background-color: transparent;">Tag Name</th>
+      <th scope="col" style="background-color: transparent;">Actions</th>
+    </tr>
+  </thead>
+  <tbody style="background-color: transparent;">
+    <tr *ngFor="let tag of tags; let i = index" style="background-color: transparent;">
+      <th scope="row" style="background-color: transparent;">{{ i + 1 }}</th>
+      <td style="background-color: transparent;">{{ tag.slug }}</td>
+      <td style="background-color: transparent;">
+        <button class="btn btn-outline-primary" (click)="tagUpdate(tag.id)">Update</button>
+        <button class="btn btn-outline-primary" (click)="tagDelete(tag.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+

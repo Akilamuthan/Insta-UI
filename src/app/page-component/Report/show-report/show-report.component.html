@@ -1,0 +1,46 @@
+<br><br><br>
+
+<div class="action-buttons" style="position: relative; left: -450px; ">
+  <button class="btn btn-outline-primary" style="width: 200px;" (click)="commentReport()">Comment Report</button>
+  <button class="btn btn-outline-primary" style="width: 200px;" (click)="postReport()">Post Report</button>
+</div>
+
+
+<p *ngIf="post" style="text-align:center ;" class="fw-bolder">post Report</p>
+<p *ngIf="comment" style="text-align:center ;" class="fw-bolder">commentReport</p>
+
+
+
+<table class="report-table table "  style="background-color: transparent;">
+  <thead style="background-color: transparent;">
+    <tr style="background-color: transparent;">
+      <th scope="col" style="background-color: transparent;">Reason</th>
+      <th scope="col" style="background-color: transparent;">Status</th>
+      <th scope="col" style="background-color: transparent;">Actions</th>
+    </tr>
+  </thead>
+  <tbody style="background-color: transparent;">
+    <tr *ngFor="let report of reports" style="background-color: transparent;">
+      <td style="background-color: transparent;">{{ report.reason }}</td>
+      <td style="background-color: transparent;">{{ report.status }}</td>
+      
+      <td *ngIf="report.status !== 'approved' && report.status !== 'rejected'" style="background-color: transparent;" >
+        
+        <form [formGroup]="form" (ngSubmit)="changeStatus(report.id)">
+
+          <select id="statusSelect" formControlName="status" class="form-control" style="width: 200px;">
+            <option value="" disabled selected>Select a status</option>
+            <option value="approved">Approved</option>
+            <option value="rejected">Rejected</option>
+          </select>
+
+          <button type="submit" class="btn btn-outline-primary mt-3" [disabled]="form.invalid" style="height: 40px;">Submit</button>
+
+        </form>
+      </td>
+      <td style="background-color: transparent;" *ngIf="report.status !=='pending' ">
+        <p >done</p>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,19 @@
+<div class="container mt-4" style="background-color:transparent ;">
+    <form [formGroup]="form" (ngSubmit)="updateComment()">
+
+        <div class="mb-3">
+            <label for="comment" class="form-label">Comment</label>
+            <input 
+                type="text" 
+                id="comment" 
+                formControlName="comment" 
+                required 
+                class="form-control" 
+                style="width: 100%;" 
+                placeholder="Enter your comment here" style="width:200px;">
+        </div>
+
+
+        <button type="submit" class="btn btn-primary" style="width:200px;">Update Comment</button>
+    </form>
+</div>

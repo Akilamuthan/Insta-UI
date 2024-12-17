@@ -1,0 +1,76 @@
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
+  transition: all 0.3s ease;
+  background-color: lightblue;
+}
+
+.card-body {
+  transition: background-color 0.3s ease; 
+
+}
+
+.card:hover .card-body {
+  background-color: #f8f9fa; 
+}
+
+.times-font {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1.25rem;
+  font-weight: 400;  
+  color: #333; 
+}
+
+
+.side-nav {
+  background-color: white; 
+  color: white;
+  width: 200px;  
+  height: 100vh; 
+  position: fixed;  
+  top: 50px;
+  left: 0;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+
+}
+
+aside{
+  margin-top: -50px;
+}
+
+.content {
+  position: relative;
+  animation: myfirst 2s linear 1s forwards; /* Adjusted duration and animation properties */
+}
+
+@keyframes myfirst {
+  0% {
+    left: -400px;
+    opacity: 0; 
+  }
+  25% {
+    left: -300px;
+    opacity: 0.5; 
+  }
+  50% {
+    left: -200px;
+    opacity: 0.75;
+  }
+  75% {
+    left: -100px;
+    opacity: 0.9;
+  }
+  100% {
+    left: 0px;
+    opacity: 1; 
+  }
+}
+
+
+
+
+
+.sharp-card {
+  border-radius: 0 !important;
+}

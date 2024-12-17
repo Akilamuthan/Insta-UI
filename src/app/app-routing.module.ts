@@ -1,124 +1,95 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminComponent } from './admin/admin.component';
+import { PageComponentComponent } from './page-component/page-component.component';
+import { TagCreateModule } from './page-component/tag/tag-create/tag-create.module';
 
-//post
-import { PostShowComponent } from './post/post-show/post-show.component';
-import { FormComponent } from './post/form/form.component';
-import { PostDeleteComponent } from './post/post-delete/post-delete.component';
-import { PostUpdateComponent } from './post/post-update/post-update.component';
-import { UserPostComponent } from './post/user-post/user-post.component';
-import { SeparatePostComponent } from './post/separate-post/separate-post.component';
-
-//user 
-import { CounterComponent } from './home/counter/counter.component'; 
-import { RegisterComponent } from './home/register/register.component';
-import { LoginComponent } from './home/login/login.component';
-import { LogoutComponent } from './home/logout/logout.component';
-
-//category
-import { CategoryDeleteComponent } from './category/category-delete/category-delete.component';
-import { CategoryUpdateComponent } from './category/category-update/category-update.component';
-import { CategoryCreateComponent } from './category/category-create/category-create.component';
-import { CategoryShowComponent } from './category/category-show/category-show.component';
-//tag 
-import { TagCreateComponent } from './tag/tag-create/tag-create.component';
-import { TagUpdateComponent } from './tag/tag-update/tag-update.component';
-import { TagDeleteComponent } from './tag/tag-delete/tag-delete.component';
-import { TagShowComponent } from './tag/tag-show/tag-show.component';
-
-
-//like
-import { CreateLikeComponent } from './like/create-like/create-like.component';
-import { CreateDislikeComponent } from './like/create-dislike/create-dislike.component';
-import { DeleteLikeComponent } from './like/delete-like/delete-like.component';
-import { DeleteDislikeComponent } from './like/delete-dislike/delete-dislike.component';
-
-
-//comment
-import { CommentCreateComponent } from './comment/comment-create/comment-create.component';
-import { CommentUpdateComponent } from './comment/comment-update/comment-update.component';
-
-//Report
-import { PostReportComponent } from './Report/post-report/post-report.component';
-import { CommentReportComponent } from './Report/comment-report/comment-report.component';
-import { ShowReportComponent } from './Report/show-report/show-report.component';
-
-
-
-//header
-import { HeaderComponent } from './home/header/header.component';
 
 const routes: Routes = [
 
-  { path: '', redirectTo: '/posts/show', pathMatch: 'full' },
+{
+  path: '',
+  component: PageComponentComponent, children: [
 
-//user
-{ path: 'home', component: PostShowComponent },
-{ path: 'register', component: RegisterComponent },
-{ path: 'login', component: LoginComponent },
-{path:'logout',component:LogoutComponent},
+    {path: 'home', redirectTo: '/posts/show' },
 
-  
-//post
-{path:'posts/show',component:PostShowComponent},
-{path:'posts/create',component : FormComponent},
-{path:'posts/update/:id',component:PostUpdateComponent},
-{path:'posts/delete/:id',component:PostDeleteComponent},
-{path:'posts/user-posts',component:UserPostComponent},
-{path:'posts/separate-posts/:id',component:SeparatePostComponent},
-  
-//tag
-{ path: 'tags/create', component: TagCreateComponent },
-{ path: 'tags/update/:id', component: TagUpdateComponent },
-{ path: 'tags/delete/:id', component: TagDeleteComponent },
-{path:'posts/create',component : FormComponent},
-{ path: 'tags/show', component: TagShowComponent },
+    { path: 'register', loadChildren: () => import('./page-component/home/register/register.module').then(m => m.RegisterModule) },
 
-//category
-{path:'category/create',component:CategoryCreateComponent},
-{path:'category/delete/:id',component:CategoryDeleteComponent},
-{path:'category/update/:id',component:CategoryUpdateComponent},
-{path:'category/show',component:CategoryShowComponent},
+    { path: 'login', loadChildren: () => import('./page-component/home/login/login.module').then(m => m.LoginModule) },
+
+    {path:'logout',loadChildren: () => import('./page-component/home/logout/logout.module').then(m => m.LogoutModule)},
+    
+    
+//posts
+    {path:'posts/show',loadChildren: () => import('./page-component/post/post-show/post-show.module').then(m => m.PostShowModule)},
+
+    {path:'posts/create',loadChildren: () => import('./page-component/post/form/form.module').then(m => m.FormModule)},
+
+    {path:'posts/update/:id',loadChildren: () => import('./page-component/post/post-update/post-update.module').then(m => m.PostUpdateModule)},
+
+   {path:'posts/delete/:id',loadChildren: () => import('./page-component/post/post-delete/post-delete.module').then(m => m.PostDeleteModule)},
+
+   {path:'posts/user-posts',loadChildren: () => import('./page-component/post/user-post/user-post.module').then(m => m.UserPostModule)},
+
+   {path:'posts/separate-posts/:id',loadChildren: () => import('./page-component/post/separate-post/separate-post.module').then(m => m.SeparatePostModule)},
+
+   //tag
+   { path: 'tags/create', loadChildren:()=>import('./page-component/tag/tag-create/tag-create.module').then(m=>m.TagCreateModule) },
+
+   { path: 'tags/update/:id', loadChildren:()=>import('./page-component/tag/tag-update/tag-update.module').then(m=>m.TagUpdateModule) },
+
+   { path: 'tags/delete/:id', loadChildren:()=>import('./page-component/tag/tag-delete/tag-delete.module').then(m=>m.TagDeleteModule) },
+
+  // {path:  'posts/create',component : FormComponent},
+
+   { path: 'tags/show', loadChildren:()=>import('./page-component/tag/tag-show/tag-show.module').then(m=>m.TagShowModule) },
+
+   // Admin route
+   { path: 'admin', loadChildren:()=>import('./page-component/admin/admin.module').then(m=>m.AdminModule) },
+
+   //category
+   {path:'category/create',loadChildren:()=>import('./page-component/category/category-create/category-create.module').then(m=>m.CategoryCreateModule)},
+
+   {path:'category/delete/:id',loadChildren:()=>import('./page-component/category/category-delete/category-delete.module').then(m=>m.CategoryDeleteModule)},
+
+  {path:'category/update/:id',loadChildren:()=>import('./page-component/category/category-update/category-update.module').then(m=>m.CategoryUpdateModule)},
+
+  {path:'category/show',loadChildren:()=>import('./page-component/category/category-show/category-show.module').then(m=>m.CategoryShowModule)},
 
 
 
 //like
 
-{path:'like/create/:id',component:CreateLikeComponent},
-{path:'dislike/create/:id',component:CreateDislikeComponent},
+  {path:'like/create/:id',loadChildren:()=>import('./page-component/like/create-like/create-like.module').then(m=>m.CreateLikeModule)},
 
-{path:'like/:id/delete/:likeId',component:DeleteLikeComponent},
-{path:'dislike/:id/delete/:likeId',component:DeleteDislikeComponent},
+  {path:'dislike/create/:id',loadChildren:()=>import('./page-component/like/create-dislike/create-dislike.module').then(m=>m.CreateDislikeModule)},
 
+  {path:'like/:id/delete/:likeId',loadChildren:()=>import('./page-component/like/delete-like/delete-like.module').then(m=>m.DeleteLikeModule)},
 
-
+  {path:'dislike/:id/delete/:likeId',loadChildren:()=>import('./page-component/like/delete-dislike/delete-dislike.module').then(m=>m.DeleteDislikeModule)},
 
 //Report 
-{path:'posts/report/:id',component:PostReportComponent},
-{path:'comments/report/:id',component:CommentReportComponent},
-{path:'show/report',component:ShowReportComponent},
+{path:'posts/report/:id',loadChildren:()=>import('./page-component/Report/post-report/post-report.module').then(m=>m.PostReportModule)},
+
+{path:'comments/report/:id',loadChildren:()=>import('./page-component/Report/comment-report/comment-report.module').then(m=>m.CommentReportModule)},
+
+{path:'show/report',loadChildren:()=>import('./page-component/Report/show-report/show-report.module').then(m=>m.ShowReportModule)},
+
 
 //comment
-{path:'posts/:id/comment/:data',component:CommentCreateComponent},
-{path:'posts/:id/comments/:commentId',component:CommentUpdateComponent},
+{path:'posts/:id/comment/:data',loadChildren:()=>import('./page-component/comment/comment-create/comment-create.module').then(m=>m.CommentCreateModule)},
+{path:'posts/:id/comments/:commentId',loadChildren:()=>import('./page-component/comment/comment-update/comment-update.module').then(m=>m.CommentUpdateModule)},
 
+//user
+{path:'users/update/:id',loadChildren:()=>import('./page-component/home/user-update/user-update.module').then(m=>m.UserUpdateModule)},
+{path:'users/delete/:id',loadChildren:()=>import('./page-component/home/user-delete/user-delete.module').then(m=>m.UserDeleteModule)},
+{path:'users/chat',loadChildren:()=>import('./page-component/home/chat/chat.module').then(m=>m.ChatModule)}  ]
+},
 
-//header
-{path:'header',component:HeaderComponent},
-
-
-
-
-
-
-// Admin route
-{ path: 'admin', component: AdminComponent },
 { path: '**', redirectTo: '/posts/show' },
 
-
-
 ];
+
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

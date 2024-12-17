@@ -1,0 +1,138 @@
+
+<main class="container mt-5" *ngIf="posts">
+
+
+  <div class="container mt-5" >
+    <div class="card mb-4 " style="width: 500px;">
+     
+
+      <img *ngIf="posts.file_type === 'image'" [src]="imageUrl + posts.file_path" alt="Posts Image"class="card-img-top "  style="height: 300px; object-fit: cover;">
+
+
+      <video *ngIf="posts.file_type === 'video'" [src]="imageUrl + posts.file_path"class="card-img-top "  style="height: 300px; object-fit: cover;" controls>
+      Your browser does not support the video tag.
+      </video>
+
+      <div class="card-body " >
+
+        <div class="">
+          <h5 class="card-title " style="font-family: Georgia, 'Times New Roman', Times, serif; ">{{ posts.title }}</h5>
+          <p style="display:inline ; font-family: Georgia, 'Times New Roman', Times, serif;  ">{{ postUser.name }}:</p>
+  
+          <button *ngIf="follow.length === 0" class="btn btn-outline-primary  mb-2 border-0" style="width: 150px; display: inline; font-family: Georgia, 'Times New Roman', Times, serif; " (click)="Follow(posts.user_id)">
+            Follow
+          </button>
+  
+          <button *ngIf="!followCheck && user.id !== posts.user_id" class="btn btn-outline-primary  mb-2 border-0" style="width: 150px; display: inline;  font-family: Georgia, 'Times New Roman', Times, serif; " (click)="Follow(posts.user_id)">
+            Follow
+          </button>
+  
+          <button *ngIf="followCheck && user.id !== posts.user_id" class="btn btn-outline-primary  mb-2 border-0" style="width: 150px; display: inline;" (click)="unfollow(posts.user_id)">
+            Unfollow
+          </button>
+          <button class="btn btn-outline-danger mb-3 border-0" *ngIf="posts" [routerLink]="['/posts/report', posts.id]" style="display: inline; margin-left: 50px;">
+            Report
+          </button>
+          <p style="font-family: Georgia, 'Times New Roman', Times, serif; margin-left: 370px; margin-top: -45px; ">Views: {{ view }}</p>
+  <!--        <p class="card-text" style="font-family: Georgia, 'Times New Roman', Times, serif; "><strong>Content:</strong> {{ posts.content }}</p>
+          <p class="card-text" style="font-family: Georgia, 'Times New Roman', Times, serif; "><strong>Description:</strong> {{ posts.description }}</p>-->
+  
+        </div>
+        
+       
+
+        <div *ngFor="let like of posts.likes">
+          <button *ngIf="like.status === 'like' && like.user_id === user.id" class="btn btn-outline-primary mb-2" (click)="deleteLike(posts.id, like.id)" style="border: 0;">
+            <img style="height: 25px; width: 25px;" src="https://cdn-icons-png.flaticon.com/128/4477/4477657.png" alt="Liked"><p style="display:inline ; font-size: large;">{{ likes | json }}</p>
+          </button>
+
+          <button *ngIf="like.status === 'dislike' && like.user_id === user.id" class="btn btn-outline-primary mb-2" (click)="deleteDislike(posts.id, like.id)" style="border: 0;">
+            <img style="height: 25px; width: 25px;" src="https://cdn-icons-png.flaticon.com/128/880/880613.png" alt="Disliked"><p style="display:inline ;">{{ likes | json }}</p>
+          </button>
+
+          <div *ngIf="like.user_id !== user.id" class="d-flex gap-3 mb-2">
+            <button class="btn btn-outline-primary" routerLink="/like/create/{{ posts.id }}" style="border: 0;">
+              <img style="height: 25px; width: 25px;" src="https://cdn-icons-png.flaticon.com/128/126/126473.png" alt="Like"><p style="display:inline ;">{{ likes | json }}</p>
+            </button>
+            <button class="btn btn-outline-primary" (click)="dislike(posts.id)" style="border: 0;">
+              <img style="height: 25px; width: 25px;" src="https://cdn-icons-png.flaticon.com/512/10749/10749195.png" alt="Dislike"><p style="display:inline ;">{{ dislikes | json }}</p>
+            </button>
+          </div>
+        </div>
+
+        <div *ngIf="posts.likes && posts.likes.length === 0" class="d-flex gap-3 mb-2">
+          <button class="btn btn-outline-primary" (click)="like(posts.id)" style="border: 0;">
+            <img style="height: 25px; width: 25px;" src="https://cdn-icons-png.flaticon.com/128/126/126473.png" alt="Like"><p style="display:inline ;">{{ likes | json }}</p>
+          </button>
+          <button class="btn btn-outline-primary" (click)="dislike(posts.id)" style="border: 0;">
+            <img style="height: 25px; width: 25px;" src="https://cdn-icons-png.flaticon.com/512/10749/10749195.png" alt="Dislike"><p style="display:inline ;">{{ dislikes | json }}</p>
+          </button>
+        </div>
+
+
+      </div>
+    </div>
+
+    <div class="container mt-4" style="width: 500px; position: relative; left: -400px;" >
+      <h2 style="font-family: Georgia, 'Times New Roman', Times, serif; ">Comments</h2>
+
+      <div *ngIf="comments && comments.length === 0" class="alert alert-info">
+        No comments yet. Be the first to comment!
+      </div>
+
+      <form [formGroup]="form" (ngSubmit)="createComment(posts.id)">
+        <input type="text" class="form-control" id="comment" formControlName="comment" placeholder="Comment" required><br>
+        <button class="btn btn-outline-primary">Submit</button>
+      </form>
+      <br>
+
+      <div *ngFor="let comment of comments" class="card mb-3 grid gap-3">
+        <div class="card-body ">
+          <p class="card-text" style="font-family: Georgia, 'Times New Roman', Times, serif; ">{{ comment.content }}</p>
+
+          <button class="btn btn-outline-danger mb-2 border-0" [routerLink]="['/comments/report', comment.id]">
+            Report
+          </button>
+
+          <button *ngIf="comment.user_id === user.id" class="btn btn-outline-danger mb-2 border-0" (click)="delteComment(user.id, comment.id)">
+            Delete
+          </button>
+
+          <button *ngIf="comment.user_id === user.id" class="btn btn-outline-danger mb-2 border-0" [routerLink]="['/posts', posts.id, 'comments', comment.id]">
+            Edit
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div >
+    <section class="content-area ml-6 position-relative start-0">
+      <div class="row row-cols-1 row-cols-md-4 g-4">
+  
+        <div  *ngFor="let post of postAll" class="col ">
+          <div  class="card sharp-card" style="width: 18rem;" (click)="reload(post.id)">
+  
+
+            <img *ngIf="post.file_type === 'image'" [src]="imageUrl + post.file_path" alt="Post Image" class="card-img-top sharp-card" style="width: 285px; height: 200px;">
+
+
+            <video *ngIf="post.file_type === 'video'" [src]="imageUrl + post.file_path" class="card-img-top sharp-card" style="width: 285px; height: 200px;" controls>
+             Your browser does not support the video tag.
+             </video>
+  
+  
+            <div class="card-body">
+              <h6 class="card-title" style="font-family: Georgia, 'Times New Roman', Times, serif;">{{ post.title }}</h6>
+              <p class="card-text" style="font-family: Georgia, 'Times New Roman', Times, serif;">Description: {{ post.description }}</p>
+              <p class="card-text" style="font-family: Georgia, 'Times New Roman', Times, serif;">Content: {{ post.content }}</p>
+  
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+

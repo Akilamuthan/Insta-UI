@@ -1,0 +1,45 @@
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
+  transition: all 0.3s ease;
+  background-color: ghostwhite;
+}
+
+.card-body {
+  transition: background-color 0.3s ease; 
+
+}
+
+.card:hover .card-body {
+  background-color: #f8f9fa; 
+}
+
+.times-font {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1.25rem;
+  font-weight: 400;  
+  color: #333; 
+}
+
+
+.side-nav {
+  background-color: white; 
+  color: white;
+  width: 200px;  
+  height: 100vh; 
+  position: fixed;  
+  top: 50px;
+  left: 0;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+
+}
+
+aside{
+  margin-top: -50px;
+}
+
+.sharp-card {
+  border-radius: 0 !important;
+}
+
