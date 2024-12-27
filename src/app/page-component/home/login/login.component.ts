@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit, OnDestroy {
             } 
             
            
-            this.router.navigate(['/posts/show']).then(()=>{
+            this.router.navigate(['/']).then(()=>{
                   location.reload();
             });
             

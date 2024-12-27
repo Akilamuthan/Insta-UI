@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { PostService } from '../post.service';
 
+
 interface Post {
   id: number;
   title: string;
@@ -39,7 +40,11 @@ export class UserPostComponent implements OnInit {
   followers:any;
   following:any;
   menu : boolean=false;
+  settings : boolean=false;
   selectedCategory: string = '';
+  click:number=0;
+  Account:boolean=false;
+  Accountclick:number=0;
   imageUrl: string = 'http://127.0.0.1:8000/download/';
   private subscriptions: Subscription = new Subscription(); 
 
@@ -56,10 +61,10 @@ export class UserPostComponent implements OnInit {
   getUser() {
     this.PostService.getUser().subscribe({
       next: (user) => {
-        this.user=user.user
+        this.user=user.user.name
         if (this.user) {
       
-          console.log("users",this.user.id);
+          console.log("users",this.user);
         } else {
         
           this.router.navigate(['/login']);
@@ -203,5 +208,27 @@ export class UserPostComponent implements OnInit {
     console.log('menu close');
     this.menu=false;
   };
+
+  setting(){
+    if(this.click===0){
+      this.settings=true;
+      this.click=1
+    }else{
+      this.settings=false;
+      this.click=0
+    }
+    
+  }
+
+  AccountItem(){
+
+    if(this.Accountclick===0){
+      this.Account=true;
+      this.Accountclick=1
+    }else{
+      this.Account=false;
+      this.Accountclick=0
+    }
+  }
 
 }

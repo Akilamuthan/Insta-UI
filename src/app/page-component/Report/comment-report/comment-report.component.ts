@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { ReportServiceService } from '../report-service.service';
 import { ActivatedRoute } from '@angular/router';
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-comment-report',
   templateUrl: './comment-report.component.html',
@@ -20,7 +20,7 @@ export class CommentReportComponent implements OnInit {
   isLoading: boolean = false;
   errorMessage: string | null = null;
 
-  constructor(private fb: FormBuilder, private router: Router, private ReportService:ReportServiceService,   private route: ActivatedRoute  ) {
+  constructor(private fb: FormBuilder, private router: Router, private ReportService:ReportServiceService,   private route: ActivatedRoute, private location:Location  ) {
     this.form = this.fb.group({
       reason: ['', [Validators.required]],  
     });
@@ -47,7 +47,7 @@ export class CommentReportComponent implements OnInit {
       this.ReportService.commentreport(this.id,formData).subscribe({
         next: (response) => {
           console.log('report successfully:', response);
-          this.router.navigate(['/posts/show']); 
+          this.location.back(); 
         },
         error: (err) => {
           console.error('Error creating tag:', err);

@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TagService } from '../tag.service';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-tag-update',
@@ -25,7 +26,8 @@ export class TagUpdateComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private TagService: TagService,
     private router: Router,
-    private route: ActivatedRoute  
+    private route: ActivatedRoute,
+    private location:Location  
 
   ) {
     this.form = this.fb.group({
@@ -63,7 +65,7 @@ export class TagUpdateComponent implements OnInit, OnDestroy {
             
           } else {
             console.log('Navigating to posts page');
-            this.router.navigate(['/posts/show']);
+            this.router.navigate(['/']);
           }
         } else {
           this.router.navigate(['/login']);
@@ -92,7 +94,7 @@ export class TagUpdateComponent implements OnInit, OnDestroy {
       this.TagService.tagupdate(this.tagId, formData).subscribe({
         next: (response) => {
           console.log('Tag updated successfully:', response);
-          this.router.navigate(['/admin']);
+          this.location.back();
         },
         error: (err) => {
           console.error('Error updating tag:', err);

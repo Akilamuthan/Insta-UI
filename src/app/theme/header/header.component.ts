@@ -43,7 +43,7 @@ export class HeaderComponent implements OnInit {
   selectedCategory: string = '';
   imageUrl: string = 'http://127.0.0.1:8000/download/';
   isAdmin: boolean = false;
-
+  menu:boolean=false;
   private subscriptions: Subscription = new Subscription();
 
   constructor(private fb: FormBuilder,private HomeService:HomeService, private router: Router) {
@@ -136,9 +136,12 @@ export class HeaderComponent implements OnInit {
   }
 
   home(){
-    this.router.navigate(['/posts/show']).then(()=>{
+    this.router.navigate(['/']).then(()=>{
       location.reload();
     })
   }
 
+  onHover(isHovered: boolean): void {
+    this.menu = isHovered;
+  }
 }

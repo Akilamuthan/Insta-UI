@@ -181,7 +181,7 @@ export class PostService {
         .pipe(catchError(this.handleError)); 
     }
     deleteComment(postId: any, commentId: any): Observable<void> {
-    
+    console.log("post",postId,"comment",commentId);
       const headers = this.createAuthorizationHeader(); 
       return this.http.delete<void>(`${this.apiUrl}/posts/${postId}/comment/${commentId}`, { headers })
         .pipe(catchError(this.handleError));

@@ -1,26 +1,27 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms'; 
 import { ReactiveFormsModule } from '@angular/forms'; 
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule, Routes } from '@angular/router';
-import { CommentDeleteComponent } from './comment-delete.component';
+import { RouterModule } from '@angular/router';
+import { BreadCrumbComponent } from './bread-crumb.component';
 
-export const routes: Routes = [
-  { path: '', component: CommentDeleteComponent, pathMatch: 'full' }  
-];
 
 
 @NgModule({
   declarations: [
-    CommentDeleteComponent
+
   ],
   imports: [
     CommonModule,
+    BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forChild(routes), 
+    RouterModule ,
+    BreadCrumbComponent
+
   ]
 })
-export class CommentDeleteModule { }
+export class BreadcrumbModule { }

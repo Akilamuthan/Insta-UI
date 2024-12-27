@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LikeDislikeService } from '../like-dislike.service';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-create-dislike',
   templateUrl: './create-dislike.component.html',
@@ -14,7 +14,8 @@ export class CreateDislikeComponent implements OnInit {
   constructor(
     private likeDislikeService: LikeDislikeService,
     private router: Router,
-    private route: ActivatedRoute 
+    private route: ActivatedRoute,
+    private location: Location  
   ) { }
 
   ngOnInit(): void {
@@ -48,7 +49,7 @@ export class CreateDislikeComponent implements OnInit {
     this.likeDislikeService.createDislike(id).subscribe(
       response => {
         console.log('disike created successfully', response);
-        this.router.navigate(['/posts/show']);  
+        this.location.back();
       },
       error => {
         console.error('Error creating like', error);

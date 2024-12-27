@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PostService } from '../post.service';
+import { Location } from '@angular/common';
 
 export interface YourDataType {
   post_type: string; 
@@ -33,7 +34,8 @@ export class PostUpdateComponent implements OnInit {
     private PostService: PostService, 
     private fb: FormBuilder, 
     private router: Router,
-    private route: ActivatedRoute 
+    private route: ActivatedRoute,
+    private location: Location   
   ) {
     this.form = this.fb.group({
       post_type: ['', Validators.required],
@@ -123,10 +125,10 @@ export class PostUpdateComponent implements OnInit {
         response => {
           console.log('Data sent successfully', response);
           this.successMessage = 'Data sent successfully!';
-         this.form.reset();
+          this.form.reset();
           this.selectedFile = null; 
           this.loading = false;
-        this.router.navigate(['/posts/show']);
+          this.location.back();
         },
         error => {
           this.loading = false;

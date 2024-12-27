@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CategoryService } from '../category.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-category-delete',
@@ -17,7 +18,8 @@ name:any;
   constructor(
     private CategoryService: CategoryService, 
     private router: Router, 
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location:Location
   ) {}
 
   ngOnInit(): void {
@@ -54,7 +56,7 @@ name:any;
             this.router.navigate(['/category/create']);
           } else {
             console.log('Navigating to posts page');
-            this.router.navigate(['/posts/show']);
+            this.router.navigate(['/']);
           }
         } else {
           this.router.navigate(['/login']);
@@ -77,7 +79,7 @@ name:any;
     this.CategoryService.deleteCategory(categoryId).subscribe(
       () => {
         console.log('Category deleted successfully');
-        this.router.navigate(['/admin']);
+        this.location.back();
       },
       error => {
         console.error('Error deleting category:', error);

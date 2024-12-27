@@ -3,8 +3,10 @@ import { PostService } from '../post.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Location } from '@angular/common';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+// import { saveAs } from 'file-saver';
 
-// Define types for User and Post (assuming their structure based on your code)
 interface User {
   id: number;
   name: string;
@@ -64,6 +66,8 @@ export class SeparatePostComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private fb: FormBuilder,  
+    private location:Location,
+    private http: HttpClient,
   ) {
 
     this.form = this.fb.group({
@@ -271,7 +275,7 @@ export class SeparatePostComponent implements OnInit, OnDestroy {
       this.postService.create(this.postId, { content: formData.comment }).subscribe({
         next: (response) => {
           console.log('Comment created successfully:', response);
-          this.router.navigate([`/posts/separate-posts/${this.postId}`]); 
+          location.reload();
         },
         error: (err) => {
           console.error('Error creating comment:', err);
@@ -281,12 +285,12 @@ export class SeparatePostComponent implements OnInit, OnDestroy {
     );
   }
 
-  delteComment(id:any,Comment:any){
+  deleteComment(id:any,Comment:any){
     this.subscriptions.add(
       this.postService.deleteComment(id,Comment).subscribe({
         next: (response) => {
           console.log('delete created successfully:', response);
-          this.router.navigate([`/posts/separate-posts/${id}`]); 
+          location.reload();
         },
         error: (err) => {
           console.error('Error creating comment:', err);
@@ -301,7 +305,7 @@ export class SeparatePostComponent implements OnInit, OnDestroy {
       this.postService.postReport(id).subscribe({
         next: (response) => {
           console.log('report successfully:', response);
-          this.router.navigate([`/posts/separate-posts/${id}`]); 
+          location.reload();
         },
         error: (err) => {
           console.error('Error creating comment:', err);
@@ -315,7 +319,7 @@ export class SeparatePostComponent implements OnInit, OnDestroy {
       this.postService.commentReport(id).subscribe({
         next: (response) => {
           console.log('report successfully:', response);
-          this.router.navigate([`/posts/separate-posts/${id}`]); 
+          location.reload();
         },
         error: (err) => {
           console.error('Error creating comment:', err);
@@ -333,7 +337,7 @@ export class SeparatePostComponent implements OnInit, OnDestroy {
       this.postService.follow(id).subscribe({
         next: (response) => {
           console.log('follow successfully:', response);
-          
+          location.reload(); 
         },
         error: (err) => {
           console.error('Error creating Follow:', err);
@@ -347,6 +351,7 @@ export class SeparatePostComponent implements OnInit, OnDestroy {
       this.postService.unfollow(id).subscribe({
         next: (response) => {
           console.log('unfollow successfully:', response);
+          location.reload(); 
         },
         error: (err) => {
           console.error('Error creating unfollow:', err);
@@ -364,4 +369,12 @@ export class SeparatePostComponent implements OnInit, OnDestroy {
     })
    // location.reload();
   }
+
+  // downloadFile(Data:any) {
+  //   const fileUrl = Data;  
+
+  //   this.http.get(fileUrl, { responseType: 'blob' }).subscribe((data: Blob) => {
+  //     saveAs(data, 'file.pdf');  
+  //   });
+  // }
 }

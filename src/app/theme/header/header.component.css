@@ -80,3 +80,8 @@
 
     }
   }
+
+  #account:hover + #menu {
+    display: block;
+  }
+  

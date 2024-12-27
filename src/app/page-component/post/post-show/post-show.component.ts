@@ -205,7 +205,7 @@ export class PostShowComponent implements OnInit, OnDestroy {
             this.router.navigate(['/category/show']);
           } else {
             console.log('Navigating to posts page');
-            this.router.navigate(['/posts/show']);
+            this.router.navigate(['/']);
           }
         } else {
           this.router.navigate(['/login']);

@@ -120,7 +120,7 @@ load(){
           this.form.reset();
           this.selectedFile = null; 
           this.loading = false;
-          this.router.navigate(['/posts/show']);
+          this.router.navigate(['/']);
         },
         error => {
           console.log("error");

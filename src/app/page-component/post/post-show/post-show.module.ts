@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { PostShowComponent } from './post-show.component';
 
+
 export const routes: Routes = [
   { path: '', component: PostShowComponent, pathMatch: 'full' }  
 ];
@@ -13,7 +14,8 @@ export const routes: Routes = [
 
 @NgModule({
   declarations: [
-    PostShowComponent
+    PostShowComponent,
+  
   ],
   imports: [
     CommonModule,

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CategoryService } from '../category.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-category-update',
@@ -22,7 +23,7 @@ name:any;
 
 
   constructor(private fb: FormBuilder, private CategoryService: CategoryService, private router: Router,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute, private location:Location) {
     this.form = this.fb.group({
       name: ['', [Validators.required
       ]], 
@@ -53,10 +54,9 @@ name:any;
   
           if (this.admin) {
             console.log('Navigating to admin page');
-            this.router.navigate(['/category/create']);
           } else {
             console.log('Navigating to posts page');
-            this.router.navigate(['/posts/show']);
+            this.router.navigate(['/']);
           }
         } else {
           this.router.navigate(['/login']);
@@ -83,7 +83,7 @@ name:any;
       this.CategoryService.categoryupdate(this.id,formData).subscribe({
         next: (response) => {
           console.log('Tag updated successfully:', response);
-          this.router.navigate(['/admin']); 
+          this.location.back(); 
         },
         error: () => {
           console.error('Error creating tag:', );

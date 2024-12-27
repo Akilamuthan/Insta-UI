@@ -2,7 +2,7 @@
   transform: translateY(-10px);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
   transition: all 0.3s ease;
-  background-color: lightblue;
+
 }
 
 .card-body {
@@ -10,8 +10,8 @@
 
 }
 
-.card:hover .card-body {
-  background-color: #f8f9fa; 
+#hover:hover{
+  background-color: lightcoral;  
 }
 
 .times-font {

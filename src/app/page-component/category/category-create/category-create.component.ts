@@ -50,7 +50,7 @@ export class CategoryCreateComponent implements OnInit, OnDestroy {
            
           } else {
             console.log('Navigating to posts page');
-            this.router.navigate(['/posts/show']);
+            this.router.navigate(['/']);
           }
         } else {
           this.router.navigate(['/login']);

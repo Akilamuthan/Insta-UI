@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { CommentService } from '../comment.service';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 interface Comment {
   content: string;
@@ -29,7 +30,8 @@ export class CommentUpdateComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private commentService: CommentService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location:Location
   ) {
     this.form = this.fb.group({
       comment: ['', [Validators.required]],  
@@ -65,7 +67,7 @@ export class CommentUpdateComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (response) => {
           console.log('Comment updated successfully:', response);
-          this.router.navigate([`/posts/separate-posts/${this.postId}`]);
+          this.location.back();
         },
         error: (err) => {
           console.error('Error updating comment:', err);

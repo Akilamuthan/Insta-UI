@@ -23,12 +23,12 @@ export class LogoutComponent implements OnInit {
         const userRole = localStorage.getItem('token');
         console.log(userRole);
         location.reload();
-        this.router.navigate(['/home']);
+        this.router.navigate(['/']);
         
       },
       error: (err) => {
         console.error('Logout failed', err);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/']);
         
       },
     });

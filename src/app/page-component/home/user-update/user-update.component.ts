@@ -76,9 +76,11 @@ export class UserUpdateComponent implements OnInit {
             this.loading = false;
             this.errorMessage = null;
             
-            this.router.navigate(['/posts/show']);
+            this.router.navigate(['/']).then(()=>{
+              location.reload();
+            } );
             this.form.reset(); 
-            location.reload();
+            
           },
           (error: ApiError) => { 
             this.loading = false;

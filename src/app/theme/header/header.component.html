@@ -1,30 +1,44 @@
-<nav class=" position-fixed start-0 top-0 end-0 w-auto   shadow-sm p-3 mb-5  p-3 mb-2  " style="height: 75px; color: white; background-color: #73d2de;">
+<nav class=" position-fixed start-0 top-0 end-0 w-auto   shadow-sm p-3 mb-5  p-3 mb-2  " style="height: 75px;  background-color: #ffffff; font-family: Madefor,Helvetica Neue,Helvetica,Arial,メイリオ,meiryo,ヒラギノ角ゴ pro w3,hiragino kaku gothic pro,sans-serif;">
   
   <div id="user" class="position-absolute start-0">
-      <button class=" mb-2 bg-transparent bg-body  border-0 " (click)="home()" ><h3 class="settings-button"  style="font-family: Georgia, 'Times New Roman', Times, serif; color: white;">{{ user?.name }}</h3></button>
+      <button class=" mb-2 bg-transparent bg-body  border-0 " (click)="home()" ><h3 class="settings-button"  style="text-transform: capitalize; ">
+        <img *ngIf="user" [src]="'./assets/data/image/bird.png'" class="mb-2 bg-transparent border-0" alt="Account Image" style="height:30px; width:30px; display:inline;" >
+        {{ user?.name }}</h3></button>
   </div>
 
+
+  
   <div id="button" class="d-flex gap-3 position-absolute end-0">
 
-
-
-    <button *ngIf="user" routerLink="/posts/user-posts" class="mb-2 bg-transparent  border-0 " style="font-family: Georgia, 'Times New Roman', Times, serif; color: white;"><p class="settings-button"  style="font-family: Georgia, 'Times New Roman', Times, serif; color: white;">Settings</p>
-      
-    </button>
+    <button *ngIf="!user" routerLink="/login" class=" mb-2 bg-transparent  border-0"  ><p class="settings-button"  >Login</p></button>
+  
+    <button *ngIf="!user" routerLink="/register" class=" mb-2 bg-transparent   border-0 " style="text-decoration:none ; "><p class="settings-button"  >Register</p></button>
     
-
-      <button *ngIf="admin" routerLink="/admin" class=" mb-2 bg-transparent   border-0 " style="font-family: Georgia, 'Times New Roman', Times, serif; color: white;"><p class="settings-button"  style="font-family: Georgia, 'Times New Roman', Times, serif; color: white;">Admin</p></button>
-
-      <button *ngIf="!user" routerLink="/login" class=" mb-2 bg-transparent  border-0"  style=" font-family: Georgia, 'Times New Roman', Times, serif; color: white;"><p class="settings-button"  style="font-family: Georgia, 'Times New Roman', Times, serif; color: white;">Login</p></button>
-
-      <button *ngIf="!user" routerLink="/register" class=" mb-2 bg-transparent   border-0 " style="text-decoration:none ;font-family: Georgia, 'Times New Roman', Times, serif; color: white;"><p class="settings-button"  style="font-family: Georgia, 'Times New Roman', Times, serif; color: white;">Register</p></button>
-
-      <button *ngIf="user" routerLink="/logout" class=" mb-2 bg-transparent   border-0 settings-button" style="font-family: Georgia, 'Times New Roman', Times, serif; color: white;"><p class="settings-button" style="font-family: Georgia, 'Times New Roman', Times, serif; color: white;">Logout</p></button>
+    <div  (mouseover)="onHover(true)" (mouseleave)="onHover(false)" >
+       <img *ngIf="user" [src]="'./assets/data/image/account.png'" class="mb-2 bg-transparent border-0" alt="Account Image" style="height:50px; width:50px; display:inline;" >  
+       
+       <div  *ngIf="menu" style="position: fixed; right: 20px; background-color: #ffffff; width: 100px;">
+        <ul style="list-style-type: none;" class="list-group">
+  
+          <li class="list-group-item" *ngIf="user"  class="mb-2 bg-transparent  border-0 " ><a routerLink="/posts/user-posts" style="text-decoration:none ; color:black"><img *ngIf="user" [src]="'./assets/data/image/account.png'" class="mb-2 bg-transparent border-0" alt="Account Image" style="height:25px; width:25px; display:inline;" >  Profile</a>
+          </li>
+          
+          <li class="list-group-item" *ngIf="admin" class=" mb-2 bg-transparent   border-0 " ><a  routerLink="/admin" style="text-decoration: none; color:black"><img *ngIf="user" [src]="'./assets/data/image/admin.png'" class="mb-2 bg-transparent border-0" alt="Account Image" style="height:25px; width:25px; display:inline;" >Admin</a></li>
       
+          <li class="list-group-item" *ngIf="user"  class=" mb-2 bg-transparent   border-0 settings-button" ><a routerLink="/logout" style="text-decoration:none ; color:black"><img *ngIf="user" [src]="'./assets/data/image/logout.svg'" class="mb-2 bg-transparent border-0" alt="Account Image" style="height:25px; width:25px; display:inline;" > Logout</a></li>
+  
+        </ul>
+      </div>
+
+    </div>
+     
+
+
   </div>
+
+ 
   <div class="loading"></div>
 </nav>
+<br><br><br>
 
-<br><br>
-<br><br>
 

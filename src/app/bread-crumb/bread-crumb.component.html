@@ -1,0 +1,25 @@
+<nav class=" position-realtive start-0  end-0 w-auto   shadow-sm p-0 mb-2     bg-white text-dark"  style="--bs-breadcrumb-divider: '';" aria-label="breadcrumb" *ngIf="breadcrumbs.length">
+  <br>
+    <ul class="breadcrumb" style="background-color:white ; margin-left: 10px;">
+  
+      <li ><a style="text-decoration: none; color:black;"   href="/"  class=" font-monospace">Home ></a></li>
+  
+      <li    *ngFor="let breadcrumb of breadcrumbs; let i = index">
+        <a  style="text-decoration: none; color:black; text-transform: capitalize;" [routerLink]="breadcrumb" *ngIf="i === breadcrumbs.length - 2 && breadcrumb"  class="font-monospace" else breadcrumb>{{ breadcrumb }}  ></a>
+      </li>
+      
+      <li *ngFor="let breadcrumb of breadcrumbs; let i = index">
+          <a (click)="post()">
+           <p *ngIf="i === breadcrumbs.length - 2  && !breadcrumb">Post ></p>
+       </a>
+       </li>
+
+      <li    *ngFor="let breadcrumb of breadcrumbs; let i = index">
+        <a  style="text-decoration: none; color:lightskyblue; text-transform: capitalize;"  *ngIf="i === breadcrumbs.length - 1"  class="font-monospace">{{ breadcrumb }}  </a>
+       
+      </li>
+    </ul>
+  </nav> 
+  
+  
+  

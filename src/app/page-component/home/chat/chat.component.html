@@ -1,4 +1,10 @@
 <div  *ngFor="let users of users">
-    <p>{{users.name}}</p>
-        <button  *ngIf="users.id != user "type="button" class="btn    btn-outline-primary">follow</button>      
+    
+    <div *ngFor="let follower of follower">
+        <div  *ngIf="users.id != user && follower.followers !=users.id">
+            <p>{{users.name}}</p>
+            <button  type="button" class="btn    btn-outline-primary">follow</button>  
+        </div>
+        
+    </div>     
 </div>

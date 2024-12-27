@@ -11,6 +11,7 @@ import { PageComponentComponent } from './page-component/page-component.componen
 import { HeaderComponent } from './theme/header/header.component';
 import { FooderComponent } from './theme/fooder/fooder.component';
 import { PostShowModule } from './page-component/post/post-show/post-show.module';
+import { BreadCrumbComponent } from './bread-crumb/bread-crumb.component';
 //import { ChatComponent } from './page-component/home/chat/chat.component';
 
 
@@ -20,6 +21,7 @@ import { PostShowModule } from './page-component/post/post-show/post-show.module
     PageComponentComponent,
     HeaderComponent,
     FooderComponent,
+    BreadCrumbComponent,
    // ChatComponent,
   ],
   imports: [

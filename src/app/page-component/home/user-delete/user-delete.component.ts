@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { HomeService } from '../home.service';
 import {  ActivatedRoute } from '@angular/router';
+import { ResourceLoader } from '@angular/compiler';
 @Component({
   selector: 'app-user-delete',
   templateUrl: './user-delete.component.html',
@@ -53,8 +54,10 @@ getUser(){
           response => {
             console.log('delete successful', response);
             this.loading = false;         
-
-            this.router.navigate(['/home']);
+            this.router.navigate(['/']).then(()=>{
+              location.reload()
+            });
+           
             
             
             

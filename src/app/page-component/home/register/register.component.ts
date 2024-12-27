@@ -72,7 +72,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
             this.loading = false;
             this.errorMessage = null;
             
-            this.router.navigate(['/posts/show']);
+            this.router.navigate(['/']);
             this.form.reset(); 
             location.reload();
           },

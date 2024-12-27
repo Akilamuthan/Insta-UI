@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LikeDislikeService } from '../like-dislike.service';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-delete-dislike',
   templateUrl: './delete-dislike.component.html',
@@ -15,7 +15,8 @@ export class DeleteDislikeComponent implements OnInit {
   constructor(
     private likeDislikeService: LikeDislikeService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location: Location 
   ) { }
 
   ngOnInit(): void {
@@ -63,7 +64,7 @@ export class DeleteDislikeComponent implements OnInit {
       response => {
         console.log('Dislike deleted successfully', response);
   
-        this.router.navigate(['/posts/show']);
+        this.location.back();
       },
       error => {
         console.error('Error deleting dislike', error);

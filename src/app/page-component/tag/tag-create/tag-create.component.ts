@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { TagService } from '../tag.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-tag-create',
@@ -19,7 +20,7 @@ export class TagCreateComponent implements OnInit, OnDestroy {
   isLoading: boolean = false;
   errorMessage: string | null = null;
 
-  constructor(private fb: FormBuilder, private TagService: TagService, private router: Router) {
+  constructor(private fb: FormBuilder, private TagService: TagService, private router: Router, private location:Location) {
     this.form = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],  
     });
@@ -51,7 +52,7 @@ export class TagCreateComponent implements OnInit, OnDestroy {
             this.router.navigate(['/tags/create']);
           } else {
             console.log('Navigating to posts page');
-            this.router.navigate(['/posts/show']);
+            this.router.navigate(['/']);
           }
         } else {
           this.router.navigate(['/login']);
@@ -79,7 +80,7 @@ export class TagCreateComponent implements OnInit, OnDestroy {
       this.TagService.tagCreate(formData).subscribe({
         next: (response) => {
           console.log('Tag created successfully:', response);
-          this.router.navigate(['/admin']); 
+          this.location.back(); 
         },
         error: (err) => {
           console.error('Error creating tag:', err);

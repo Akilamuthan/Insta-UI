@@ -52,7 +52,7 @@ export class PostDeleteComponent implements OnInit {
     
     this.PostService.delete(this.postId).subscribe(() => {
       console.log('Post deleted successfully');
-      this.router.navigate(['/posts/show']); 
+      this.router.navigate(['/']); 
     }, error => {
 
       console.error('Error deleting post:', error);

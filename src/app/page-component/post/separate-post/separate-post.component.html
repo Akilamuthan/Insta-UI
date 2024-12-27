@@ -1,5 +1,5 @@
 
-<main class="container mt-5" *ngIf="posts">
+<main class="container mt-5" *ngIf="posts" >
 
 
   <div class="container mt-5" >
@@ -16,27 +16,28 @@
       <div class="card-body " >
 
         <div class="">
-          <h5 class="card-title " style="font-family: Georgia, 'Times New Roman', Times, serif; ">{{ posts.title }}</h5>
-          <p style="display:inline ; font-family: Georgia, 'Times New Roman', Times, serif;  ">{{ postUser.name }}:</p>
+          <h5 class="card-title " style="  text-transform: capitalize;" >{{ posts.title }}</h5>
+          <p style="display:inline ; text-transform: capitalize; " >{{ postUser.name }}:</p>
   
-          <button *ngIf="follow.length === 0" class="btn btn-outline-primary  mb-2 border-0" style="width: 150px; display: inline; font-family: Georgia, 'Times New Roman', Times, serif; " (click)="Follow(posts.user_id)">
+          <button *ngIf="follow.length === 0" class="btn btn-outline-primary  mb-2 border-0" style="width: 150px; display: inline;  " (click)="Follow(posts.user_id)">
             Follow
           </button>
   
-          <button *ngIf="!followCheck && user.id !== posts.user_id" class="btn btn-outline-primary  mb-2 border-0" style="width: 150px; display: inline;  font-family: Georgia, 'Times New Roman', Times, serif; " (click)="Follow(posts.user_id)">
+          <button *ngIf="!followCheck && user.id !== posts.user_id" class="btn btn-outline-primary  mb-2 border-0" style="width: 150px; display: inline;  " (click)="Follow(posts.user_id)">
             Follow
           </button>
   
           <button *ngIf="followCheck && user.id !== posts.user_id" class="btn btn-outline-primary  mb-2 border-0" style="width: 150px; display: inline;" (click)="unfollow(posts.user_id)">
             Unfollow
           </button>
-          <button class="btn btn-outline-danger mb-3 border-0" *ngIf="posts" [routerLink]="['/posts/report', posts.id]" style="display: inline; margin-left: 50px;">
+          <button class="btn btn-outline-danger mb-3 border-0" [routerLink]="['/posts/report', posts.id]" style="display: inline; margin-left: 50px;">
             Report
           </button>
-          <p style="font-family: Georgia, 'Times New Roman', Times, serif; margin-left: 370px; margin-top: -45px; ">Views: {{ view }}</p>
+          <p style=" margin-left: 370px; margin-top: -45px; ">Views: {{ view }}</p>
   <!--        <p class="card-text" style="font-family: Georgia, 'Times New Roman', Times, serif; "><strong>Content:</strong> {{ posts.content }}</p>
           <p class="card-text" style="font-family: Georgia, 'Times New Roman', Times, serif; "><strong>Description:</strong> {{ posts.description }}</p>-->
   
+          
         </div>
         
        
@@ -73,8 +74,8 @@
       </div>
     </div>
 
-    <div class="container mt-4" style="width: 500px; position: relative; left: -400px;" >
-      <h2 style="font-family: Georgia, 'Times New Roman', Times, serif; ">Comments</h2>
+    <div  style="width: 500px; " >
+      <h5 >Comments</h5>
 
       <div *ngIf="comments && comments.length === 0" class="alert alert-info">
         No comments yet. Be the first to comment!
@@ -88,13 +89,13 @@
 
       <div *ngFor="let comment of comments" class="card mb-3 grid gap-3">
         <div class="card-body ">
-          <p class="card-text" style="font-family: Georgia, 'Times New Roman', Times, serif; ">{{ comment.content }}</p>
+          <p class="card-text" >{{ comment.content }}</p>
 
           <button class="btn btn-outline-danger mb-2 border-0" [routerLink]="['/comments/report', comment.id]">
             Report
           </button>
 
-          <button *ngIf="comment.user_id === user.id" class="btn btn-outline-danger mb-2 border-0" (click)="delteComment(user.id, comment.id)">
+          <button *ngIf="comment.user_id === user.id" class="btn btn-outline-danger mb-2 border-0" (click)="deleteComment(posts.id, comment.id)">
             Delete
           </button>
 
@@ -107,32 +108,33 @@
   </div>
 
   <div >
-    <section class="content-area ml-6 position-relative start-0">
-      <div class="row row-cols-1 row-cols-md-4 g-4">
-  
-        <div  *ngFor="let post of postAll" class="col ">
-          <div  class="card sharp-card" style="width: 18rem;" (click)="reload(post.id)">
-  
-
-            <img *ngIf="post.file_type === 'image'" [src]="imageUrl + post.file_path" alt="Post Image" class="card-img-top sharp-card" style="width: 285px; height: 200px;">
-
-
-            <video *ngIf="post.file_type === 'video'" [src]="imageUrl + post.file_path" class="card-img-top sharp-card" style="width: 285px; height: 200px;" controls>
-             Your browser does not support the video tag.
-             </video>
-  
-  
-            <div class="card-body">
-              <h6 class="card-title" style="font-family: Georgia, 'Times New Roman', Times, serif;">{{ post.title }}</h6>
-              <p class="card-text" style="font-family: Georgia, 'Times New Roman', Times, serif;">Description: {{ post.description }}</p>
-              <p class="card-text" style="font-family: Georgia, 'Times New Roman', Times, serif;">Content: {{ post.content }}</p>
-  
+              <section class="container-sm content-area ml-6 position-relative">
+                <div class="row row-cols-1 row-cols-md-3 g-3">
+            
+                  <div  *ngFor="let post of postAll" class="col ">
+                    <div  (click)="reload(post.id)" class="card sharp-card" style="width: 18rem;"  id="hover">
+            
+               
+                  <img *ngIf="post.file_type === 'image'" [src]="imageUrl + post.file_path" alt="Post Image" class="card-img-top sharp-card" style="width: 287px; height: 200px;">
+            
+            
+                  <video *ngIf="post.file_type === 'video'" [src]="imageUrl + post.file_path" class="card-img-top sharp-card" style="width: 287px; height: 200px;" controls>
+                   Your browser does not support the video tag.
+                   </video>
+            
+            
+            
+                      <div class="card-body" >
+                        <h6 class="card-title" style=" text-overflow: ellipsis; overflow: hidden; white-space: nowrap; text-transform: capitalize; ">{{ post.title }}</h6>
+                        <p class="card-text" style=" text-overflow: ellipsis; overflow: hidden; white-space: nowrap; text-transform: capitalize; ">Description: {{ post.description }}</p>
+                        <p class="card-text " style=" text-overflow: ellipsis; overflow: hidden; white-space: nowrap; text-transform: capitalize; ">Content: {{ post.content }}</p>
+            
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-</main>
-
+          </main>
+          
 

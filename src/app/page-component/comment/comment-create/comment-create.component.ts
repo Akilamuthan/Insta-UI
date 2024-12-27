@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { CommentService } from '../comment.service';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+
 @Component({
   selector: 'app-comment-create',
   templateUrl: './comment-create.component.html',
@@ -17,7 +19,8 @@ export class CommentCreateComponent implements OnInit, OnDestroy {
   constructor(
     private commentService: CommentService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location:Location
   ) { }
 
   ngOnInit(): void {
@@ -38,7 +41,7 @@ export class CommentCreateComponent implements OnInit, OnDestroy {
       this.commentService.create(this.postId, { content: this.commentContent }).subscribe({
         next: (response) => {
           console.log('Comment created successfully:', response);
-          this.router.navigate(['/posts']); 
+          this.location.back(); 
         },
         error: (err) => {
           console.error('Error creating comment:', err);

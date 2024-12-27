@@ -2,7 +2,7 @@
   transform: translateY(-10px);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
   transition: all 0.3s ease;
-  background-color: lightblue;
+ 
 }
 
 .card-body {
@@ -11,7 +11,7 @@
 }
 
 .card:hover .card-body {
-  background-color: #f8f9fa; 
+  background-color: lightcoral; 
 }
 
 .times-font {
@@ -73,4 +73,54 @@ aside{
 
 .sharp-card {
   border-radius: 0 !important;
+}
+
+#text:hover{
+text-shadow: 6px 6px 8px lightskyblue;
+}
+
+.scrolling-posts {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+
+.flex-container {
+  display: flex;
+  animation: scroll-left 10s linear infinite;
+  animation-duration: 30s;
+}
+
+
+.card-container {
+  display: inline-block;
+  margin-right: 20px; 
+}
+
+
+@keyframes scroll-left {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+
+.card {
+  margin: 10px;
+}
+
+
+@media (max-width: 768px) {
+  .card {
+    width: 15rem; 
+  }
+}
+
+@media (max-width: 576px) {
+  .card {
+    width: 12rem; 
+  }
 }
