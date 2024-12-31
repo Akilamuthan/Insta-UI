@@ -1,13 +1,13 @@
 <br><br><br>
 
-<div class="action-buttons" style="position: relative; left: -450px; ">
-  <button class="btn btn-outline-primary" style="width: 200px;" (click)="commentReport()">Comment Report</button>
-  <button class="btn btn-outline-primary" style="width: 200px;" (click)="postReport()">Post Report</button>
+<div class="action-buttons" style="display: inline;">
+  <button class="btn btn-outline-primary" style="width: 200px; text-align: center;" (click)="commentReport()">Comment Report</button><br><br>
+  <button class="btn btn-outline-primary" style="width: 200px; text-align: center;" (click)="postReport()">Post Report</button>
 </div>
 
-
-<p *ngIf="post" style="text-align:center ;" class="fw-bolder">post Report</p>
-<p *ngIf="comment" style="text-align:center ;" class="fw-bolder">commentReport</p>
+<p *ngIf="!post && !comment" style="text-align:center ;" class="fw-bolder">Report</p>
+<p *ngIf="post" style="text-align:center ;" class="fw-bolder">Post Report</p>
+<p *ngIf="comment" style="text-align:center ;" class="fw-bolder">Comment Report</p>
 
 
 

@@ -1,120 +1,110 @@
-<nav  class="shadow-sm p-3  mb-2 border-top" style="height:60px; position: relative; top: -20px; text-align: center;  background-color: #ffffff;">
-
-  <form [formGroup]="forms" (ngSubmit)="pericularpost()">
-    <div class="input-group" style="width: 500px; height: 30px; position: absolute; left: 300px;">
-      <input type="text" class="form-control" placeholder="search"   aria-label="Recipient's username" 
-        aria-describedby="button-addon2" 
-        formControlName="data" 
-        id="data" 
-        required
-      >
-      <button class="btn btn-outline-secondary" type="submit" id="button-addon2">search</button>
-    </div>
-  </form>
-  
-  <div id="button" class="d-flex position-absolute end-0 " style="position: absolute; top: 5px; display: inline; ">
-        <select [(ngModel)]="selectedCategory" (change)="getCategory(selectedCategory)" class="form-select bg-transparent  border-0 dropdown-toggle" aria-label="Category" >
-
-       <option  value="">Select a Category</option>
-
-       <option *ngFor="let category of categories" [value]="category.id"  style="text-transform: capitalize;">{{ category.slug }}</option>
-
-    </select>
-</div>
-</nav>
-
-<br><br>
-
-<div class="scrolling-posts">
-  <section>
-    <div class="flex-container">
-     
-      <div *ngFor="let post of posts" class="card-container">
-        <div [routerLink]="['/posts/separate-posts', post.id]" class="card sharp-card" style="width: 25rem; height: 25rem;">
-          
-        
-          <img *ngIf="post.file_type === 'image'" [src]="imageUrl + post.file_path" alt="Post Image" class="card-img-top sharp-card" style="width: 395px; height: 250px;">
-  
-          
-          <video *ngIf="post.file_type === 'video'" [src]="imageUrl + post.file_path" class="card-img-top sharp-card" style="width: 400px; height: 200px;" controls>
-            Your browser does not support the video tag.
-          </video>
-  
-          <div class="card-body">
-            <h6 class="card-title" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap; text-transform: capitalize; ">
-              {{ post.title }}
-            </h6>
-            <p class="card-text" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap; text-transform: capitalize; ">
-              Description: {{ post.description }}
-            </p>
-            <p class="card-text" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap; text-transform: capitalize; ">
-              Content: {{ post.content }}
-            </p>
-          </div>
+<nav class="shadow-sm p-3 mb-2 border-top" style="height: 60px; position: relative; top: -20px; text-align: center; background-color: #ffffff;">
+    <form [formGroup]="forms" (ngSubmit)="pericularpost()">
+        <div class="input-group" style="width: 100%; max-width: 500px; height: 30px;">
+            <input type="text" class="form-control" placeholder="search" aria-label="Recipient's username" aria-describedby="button-addon2" formControlName="data" id="data" required />
+            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">search</button>
         </div>
-      </div>
+    </form>
+  
+    <div id="button" class="d-flex position-absolute end-0" style="position: absolute; top: 5px; display: inline;">
+        <select [(ngModel)]="selectedCategory" (change)="getCategory(selectedCategory)" class="form-select bg-transparent border-0 dropdown-toggle" aria-label="Category">
+            <option value="">Select a Category</option>
+            <option *ngFor="let category of categories" [value]="category.id" style="text-transform: capitalize;">{{ category.slug }}</option>
+        </select>
     </div>
+  </nav>
+  
+<br />
+<br />
+
+<div class="video" style="border: 1px solid white;  height: 450px; background-color:blanchedalmond;" >
+
+  <div  style="margin-left: 850px; margin-top:-2px; ">
+    <p class="text" style="font-size:40px;  color: black;">
+      Turn your dreams into posts, and let your actions inspire the world.
+    </p>
+  </div>
+ 
+  <video class="video"  width="800" height="500" style="position: static; margin-top:-280px;" autoplay >
+    <source src="./assets/data/video/monkeyking.mp4" type="video/mp4" />
+  </video>
+
+</div>
+
+
+<div class="scrolling-posts" >
+  <section>
+      <div class="flex-container">
+
+          <div *ngFor="let post of posts" class="card-container">
+
+              <div [routerLink]="['/posts/separate-posts', post.id]" class="card sharp-card" style="width: 25rem; height: 25rem;">
+
+                  <img *ngIf="post.file_type === 'image'" [src]="imageUrl + post.file_path" alt="Post Image" class="card-img-top sharp-card" style="width: 395px; height: 250px;" />
+
+                  <video *ngIf="post.file_type === 'video'" [src]="imageUrl + post.file_path" class="card-img-top sharp-card" style="width: 400px; height: 200px;" controls>
+                      Your browser does not support the video tag.
+                  </video>
+
+                  <div class="card-body">
+                      <h6 class="card-title" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap; text-transform: capitalize;">
+                          {{ post.title }}
+                      </h6>
+                      <p class="card-text" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap; text-transform: capitalize;">
+                          Description: {{ post.description }}
+                      </p>
+                      <p class="card-text" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap; text-transform: capitalize;">
+                          Content: {{ post.content }}
+                      </p>
+                  </div>
+              </div>
+          </div>
+      </div>
   </section>
 </div>
 
-
-<div *ngIf="show"  style="text-align: center; padding: 20px; font-style: small-caps;  opacity: 0; " class="content" >
-  <h5 >
-    <b id="text">
-       Welcome to Our Website!
-    </b>
+<div *ngIf="show" style="text-align: center; padding: 20px; font-style: small-caps; opacity: 0;" class="content">
+  <h5>
+      <b id="text">
+          Welcome to Our Website!
+      </b>
   </h5>
-  <p style="font-size: 18px;  margin-top: 10px;" id="text">
-    Enjoy the best experience while browsing our site, designed with you in mind. 
-    We are committed to offering seamless navigation, valuable content, and responsive support. 
-    Let us guide you through an incredible journey!
+  <p style="font-size: 18px; margin-top: 10px;" id="text">
+      Enjoy the best experience while browsing our site, designed with you in mind. We are committed to offering seamless navigation, valuable content, and responsive support. Let us guide you through an incredible journey!
   </p>
 </div>
 
-
-<br><br><br><br><br><br>
-<div >
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<div>
   <div *ngIf="posts.length===0">
-    <p style="text-align: center;">No posts available</p>
+      <p style="text-align: center;">No posts available</p>
   </div>
   <section class="container-sm content-area ml-6 position-relative">
-    <div class="row row-cols-1 row-cols-md-3 g-3">
+      <div class="row row-cols-1 row-cols-md-3 g-3">
+          <div *ngFor="let post of posts" class="col">
+              <div [routerLink]="['/posts/separate-posts', post.id]" class="card sharp-card" style="width: 18rem;">
+                  <img *ngIf="post.file_type === 'image'" [src]="imageUrl + post.file_path" alt="Post Image" class="card-img-top sharp-card" style="width: 285px; height: 200px;" />
 
-      <div  *ngFor="let post of posts" class="col ">
-        <div  [routerLink]="['/posts/separate-posts', post.id]"class="card sharp-card" style="width: 18rem; ">
+                  <video *ngIf="post.file_type === 'video'" [src]="imageUrl + post.file_path" class="card-img-top sharp-card" style="width: 285px; height: 200px;" controls>
+                      Your browser does not support the video tag.
+                  </video>
 
-   
-      <img *ngIf="post.file_type === 'image'" [src]="imageUrl + post.file_path" alt="Post Image" class="card-img-top sharp-card" style="width: 285px; height: 200px;">
-
-
-      <video *ngIf="post.file_type === 'video'" [src]="imageUrl + post.file_path" class="card-img-top sharp-card" style="width: 285px; height: 200px;" controls>
-       Your browser does not support the video tag.
-       </video>
-
-
-
-          <div class="card-body">
-            <h6 class="card-title" style=" text-overflow: ellipsis; overflow: hidden; white-space: nowrap; text-transform: capitalize; ">{{ post.title }}</h6>
-            <p class="card-text" style=" text-overflow: ellipsis; overflow: hidden; white-space: nowrap; text-transform: capitalize; ">Description: {{ post.description }}</p>
-            <p class="card-text " style=" text-overflow: ellipsis; overflow: hidden; white-space: nowrap; text-transform: capitalize; ">Content: {{ post.content }}</p>
-
+                  <div class="card-body">
+                      <h6 class="card-title" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap; text-transform: capitalize;">{{ post.title }}</h6>
+                      <p class="card-text" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap; text-transform: capitalize;">Description: {{ post.description }}</p>
+                      <p class="card-text" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap; text-transform: capitalize;">Content: {{ post.content }}</p>
+                  </div>
+              </div>
           </div>
-        </div>
       </div>
-    </div>
   </section>
 </div>
 
-<div *ngIf="show" class="content" >
-  <p id="text" style="text-align: center;"><b>
-    Thank you for watching!</b>
-  </p>
+<div *ngIf="show" class="content">
+  <p id="text" style="text-align: center;"><b> Thank you for watching!</b></p>
 </div>
-
-
-
- 
-
-
-
-

@@ -1,87 +1,177 @@
 .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
-    transition: all 0.3s ease;
-    background-color: black;
+  transform: translateY(-10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
+  transition: all 0.3s ease;
+  background-color: black;
+}
+
+.card-body {
+  transition: background-color 0.3s ease; 
+}
+
+.card:hover .card-body {
+  background-color: black; 
+}
+
+.times-font {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1.25rem;
+  font-weight: 400;  
+  color: #333; 
+}
+
+.side-nav {
+  background-color: black; 
+  color: white;
+  width: 200px;  
+  height: 100vh; 
+  position: fixed;  
+  top: 50px;
+  left: 0;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+aside{
+  margin-top: -50px;
+}
+
+.settings-button:hover {
+  color: #D14200;
+}
+
+.loading {
+  width: 10px;
+  height: 2px;
+  position: relative;
+  left: -15px;
+  top: 62px;
+  background-color: transparent;
+  animation-name: example;
+  animation-duration: 4s;
+}
+
+@keyframes example {
+  0% {
+      background-color: coral;
+      width: 50px;
   }
-  
-  .card-body {
-    transition: background-color 0.3s ease; 
-  
+  25% {
+      background-color: coral;
+      width: 100px;
   }
-  
-  .card:hover .card-body {
-    background-color: black; 
+  50% {
+      background-color: coral;
+      width: 200px;
   }
-  
-  .times-font {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 1.25rem;
-    font-weight: 400;  
-    color: #333; 
+  100% {
+      background-color: coral;
+      width: 1250px;
   }
-  
-  
+}
+
+#account:hover + #menu {
+  display: block;
+}
+
+
+@media (max-width: 576px) {
   .side-nav {
-    background-color: black; 
-    color: white;
-    width: 200px;  
-    height: 100vh; 
-    position: fixed;  
-    top: 50px;
-    left: 0;
-    padding: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  
-  }
-  
-  aside{
-    margin-top: -50px;
+      width: 100%;  
+      height: auto;  
+      position: relative; 
+      padding: 10px;
+      box-shadow: none; 
   }
 
-  .settings-button:hover {
-    color: #D14200;
+  .card-body {
+      padding: 10px; 
   }
 
   .loading {
-    width: 10px;
-    height: 2px;
-    position: relative;
-    left: -15px;
-    top: 62px;
-    background-color: transparent;
-    animation-name: example;
-    animation-duration: 4s;
-
-  }
-  
-
-  @keyframes example {
-    0% {
-      background-color: coral;
-      width: 50px;
-
-    }
-    25% {
-      background-color: coral;
-      width: 100px;
-
-    }
-    50% {
-      background-color: coral;
-      width: 200px;
-
-
-    }
-    100% {
-      background-color: coral;
-      width: 1250px;
-
-
-    }
+      top: 45px; 
+      left: -5px;
+      width: 40px; 
   }
 
-  #account:hover + #menu {
-    display: block;
+  #user button {
+      padding: 5px 10px; 
   }
-  
+
+  #button {
+      display: flex;
+      flex-direction: column; 
+      align-items: flex-end;
+     
+  }
+
+  .settings-button {
+      font-size: 1rem;
+  }
+
+
+  #menu {
+      position: absolute;
+      right: 0;
+      top: 55px;  
+      display: none;
+  }
+
+  .button{
+    display: flex;
+  }
+
+  .login{
+    margin-left: -100px;
+  }
+  .register{
+    margin-left: -100px;
+  }
+}
+
+
+@media (min-width: 576px) and (max-width: 992px) {
+  .side-nav {
+      width: 150px;  
+      padding: 15px; 
+  }
+
+  .card-body {
+      padding: 15px;
+  }
+
+  .loading {
+      top: 55px; 
+  }
+
+  #button {
+      display: flex;
+      flex-direction: row; 
+  }
+
+  #user button {
+      padding: 10px 15px;  
+  }
+
+  .settings-button {
+      font-size: 1.125rem; 
+  }
+}
+
+
+@media (min-width: 992px) {
+  .side-nav {
+      width: 200px; 
+      padding: 20px; 
+  }
+
+  #button {
+      display: flex;
+      flex-direction: row; 
+      gap: 15px;
+  }
+
+  .settings-button {
+      font-size: 1.25rem; 
+  }
+}

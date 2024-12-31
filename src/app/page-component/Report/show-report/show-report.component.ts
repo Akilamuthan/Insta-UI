@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ReportServiceService } from '../report-service.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { takeUntil } from 'rxjs/operators';
+import { Location } from '@angular/common';
 
 export interface report {
   reason: string;
@@ -32,7 +33,8 @@ export class ShowReportComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private router: Router,
     private reportService: ReportServiceService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location:Location
   ) {
     this.form = this.fb.group({
       status: ['', Validators.required]
@@ -71,7 +73,7 @@ export class ShowReportComponent implements OnInit, OnDestroy {
     this.reportService.changeReportStatus(reportId, status).subscribe({
       next: (response) => {
         console.log('Status changed successfully:', response);
-        this.router.navigate(['/show/report']);  
+        location.reload();  
       },
       error: (error) => {
         console.error('Error changing status:', error);

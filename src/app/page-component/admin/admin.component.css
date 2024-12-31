@@ -1,4 +1,4 @@
-/* General styling for the body */
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -7,20 +7,20 @@ body {
   display: flex;
 }
 
-/* Side Navigation Bar Styles */
+
 .side-nav {
-  background-color: #333; /* Dark background */
+  background-color: #333; 
   color: white;
-  width: 200px;  /* Fixed width for side navigation */
-  height: 100vh; /* Full height */
-  position: fixed;  /* Keep it fixed on the left */
+  width: 200px;  
+  height: 100vh;
+  position: fixed; 
   top: 0;
   left: 0;
   padding: 20px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Header inside the side nav */
+
 .nav-header {
   text-align: center;
   margin-bottom: 20px;
@@ -32,7 +32,7 @@ body {
   color: #fff;
 }
 
-/* Navigation Links */
+
 .nav-links {
   list-style: none;
   padding: 0;
@@ -47,37 +47,37 @@ body {
 }
 
 .nav-button {
-  background-color: #007BFF; /* Button background color */
+  background-color: #007BFF; 
   color: white;
   font-size: 16px;
   padding: 10px 20px;
-  width: 100%;  /* Make the buttons take full width */
+  width: 100%; 
   border: none;
   border-radius: 5px;
-  text-align: left; /* Align text to the left */
+  text-align: left; 
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-/* Hover effect for buttons */
+
 .nav-button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
-  transform: scale(1.05);     /* Slight enlargement on hover */
+  background-color: #0056b3; 
+  transform: scale(1.05);     
 }
 
-/* Active link (current route) */
+
 .active-link .nav-button {
-  background-color: #28a745; /* Green color for active link */
+  background-color: #28a745; 
 }
 
-/* Main content area to the right of the side nav */
+
 .main-content {
-  margin-left: 250px; /* Space for the side nav */
+  margin-left: 250px; 
   padding: 20px;
   width: 100%;
 }
 
-/* Mobile responsiveness: side nav becomes a top navbar */
+
 @media (max-width: 768px) {
   .side-nav {
     position: relative;
@@ -91,10 +91,10 @@ body {
   }
 
   .nav-button {
-    width: auto; /* Buttons are no longer full width */
+    width: auto; 
   }
 
-  /* Collapsing the menu into a top nav bar on mobile */
+
   .nav-links {
     display: flex;
     justify-content: space-around;
@@ -105,12 +105,76 @@ body {
   }
 
   .side-nav {
-    display: none; /* Hide side nav on mobile */
+    display: none;
   }
 
   .main-content {
-    padding-top: 60px; /* Adjust padding for mobile */
+    padding-top: 60px; 
   }
+}
+
+
+aside{
+  height: 100vh;
+  background: white;
+  margin-top: -20px;
+  overflow: hidden;
+  position: fixed;
+ 
+}
+
+main{
+  margin-left: 100px;
+}
+
+.loading{
+
+  background-color: transparent;
+  border-radius: 50%;
+  margin: auto;
+  border: 10px solid transparent;
+  border-top: 10px solid  skyblue;
+  animation: loading 2s linear infinite;
+  width: 120px;
+  height: 120px;
+ 
+}
+
+@keyframes loading{
+
+  0%{transform: rotate(0deg);}
+  100%{transform: rotate(360deg);}
+}
+
+@media (max-width: 700px) {
+
+aside{
+  height: 150px;
+  position: sticky;
+ 
+}
+.Welcome{
+  display: none;
+ 
+}
+
+.admin{ 
+
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  position: relative;
+  left: -80px;
+  margin-left: -50px;
+ 
+}
+.admin p {
+  font-size: small; 
+}
+.admin img {
+  height: small; 
+  width:small; 
+}
 }
 
 

@@ -41,7 +41,7 @@ aside{
 
 .content {
   position: relative;
-  animation: myfirst 2s linear 1s forwards; /* Adjusted duration and animation properties */
+  animation: myfirst 2s linear 1s forwards; 
 }
 
 @keyframes myfirst {
@@ -108,19 +108,117 @@ text-shadow: 6px 6px 8px lightskyblue;
 }
 
 
+
 .card {
   margin: 10px;
+  transition: all 0.3s ease;
 }
-
 
 @media (max-width: 768px) {
   .card {
-    width: 15rem; 
+    width: 15rem;
+    margin: 10px auto;
+  }
+
+  .input-group {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  nav {
+    width: 100%;
+    overflow-wrap: normal;
+  }
+
+ 
+  .card {
+    margin: 10px;
+    width: 45%;
+  }
+
+
+  .input-group {
+    width: 100%;
+    margin: 0 auto;
   }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 700px) {
   .card {
     width: 12rem; 
   }
+
+  
+  nav {
+    width: 100%;
+    text-align: center;
+  }
+
+  .input-group {
+    width: 100%; 
+    margin-top: 50px;
+    position: none;
+  }
+
+
+
+  .card {
+    margin: 10px 0;
+  }
+
+ 
+  .text {
+    font-size: 1.2rem;
+  }
+ 
+
+
+}
+
+.text:hover {
+  text-shadow: 10px rosybrown;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
+}
+
+.card-body {
+  transition: background-color 0.3s ease; 
+}
+
+.card:hover .card-body {
+  background-color: lightcoral; 
+}
+
+@keyframes myfirst {
+  0% {
+    left: -400px;
+    opacity: 0;
+  }
+  25% {
+    left: -300px;
+    opacity: 0.5;
+  }
+  50% {
+    left: -200px;
+    opacity: 0.75;
+  }
+  75% {
+    left: -100px;
+    opacity: 0.9;
+  }
+  100% {
+    left: 0px;
+    opacity: 1;
+  }
+}
+
+@media (max-width: 1200px) {
+  
+   .video{
+     display: none;
+   }
+
 }

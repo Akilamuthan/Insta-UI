@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { PostService } from '../post.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import {  AfterViewInit, ViewChild, ElementRef,Inject } from '@angular/core';
 
 interface Post {
   
@@ -46,7 +46,16 @@ export class PostShowComponent implements OnInit, OnDestroy {
   imageUrl: string = 'http://127.0.0.1:8000/download/';
   isAdmin: boolean = false;
 
+  @ViewChild('videoPlayer') videoPlayer: ElementRef = {} as ElementRef;
 
+
+  ngAfterViewInit() { 
+    const videoElement = this.videoPlayer.nativeElement;
+    videoElement.play().catch((error: any) => {
+      console.error('Autoplay failed:', error);
+    });
+  }
+  
   private subscriptions: Subscription = new Subscription();
 
   constructor(private fb: FormBuilder,private postService: PostService, private router: Router) {

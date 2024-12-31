@@ -43,3 +43,11 @@ aside{
   border-radius: 0 !important;
 }
 
+
+@media (max-width: 576px) {
+  .menu{
+    position: absolute;
+
+    right: 0px;
+  }
+}

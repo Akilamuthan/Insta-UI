@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 import { Router } from '@angular/router';
 import { HomeService } from '../home/home.service';
+import { TagService } from '../tag/tag.service';
+import { CategoryService } from '../category/category.service';
+import { ReportServiceService } from '../Report/report-service.service';
+
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -14,8 +18,11 @@ export class AdminComponent implements OnInit {
   admin: boolean = false; 
   userAll:any;
   posts:any;
+  tagName:any;
+  categoryName:any;
+  report:any;
 
-  constructor(private apiService: ApiService, private router: Router,private HomeService:HomeService) {}
+  constructor(private apiService: ApiService, private router: Router,private HomeService:HomeService, private tag:TagService, private category:CategoryService,private reportservice:ReportServiceService) {}
 
   ngOnInit(): void {
     this.getUser();
@@ -82,6 +89,29 @@ export class AdminComponent implements OnInit {
       }
     })
 
+    this.tag.tagShow().subscribe({
+      next:(tag)=>{
+          this.tagName=tag;
+      },error:(err)=>{
+        console.log(err);
+      }
+    })
+
+    this.category.categoryShow().subscribe({
+       next:(category)=>{
+           this.categoryName=category;
+       },error:(err)=>{
+           console.log(err);
+       }
+    })
+
+    this.reportservice.showReport().subscribe({
+      next:(report)=>{
+           this.report=report;
+      },error:(err)=>{
+         console.log(err);
+      }
+    })
 
   }
 }

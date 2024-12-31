@@ -1,16 +1,92 @@
+
+footer {
+  background-color: #ffffff;
+  margin-bottom: 0%;
+  margin-left: 0%;
+  margin-right: 0%;
+  font-family: Madefor, Helvetica Neue, Helvetica, Arial, メイリオ, meiryo, ヒラギノ角ゴ pro w3, hiragino kaku gothic pro, sans-serif;
+  overflow: hidden;
+}
+
 .social-link {
-    display: block;
-   
-    margin: 5px 0;
-    text-decoration: none;
+  display: block;
+  margin: 5px 0;
+  text-decoration: none;
+}
+
+.social-link:hover {
+  color: #D14200;
+}
+
+.text-blue:hover {
+  color: #D14200;
+}
+
+
+@media (max-width: 576px) {
+  footer .content {
+      padding: 15px;  
   }
-  
-  .social-link:hover {
-    color: #D14200; /* Change color on hover */
+
+  footer h5 {
+      font-size: 1.25rem;  
   }
-  
-  .text-blue:hover {
-    color: #D14200; /* Change color for Privacy Policy & Terms links */
+
+  footer p {
+      font-size: 1rem;  
   }
-  
-  
+
+  footer .row {
+      flex-direction: column; 
+  }
+
+  footer .col-12 {
+      text-align: center;  
+  }
+
+  footer .social-link {
+      font-size: 1.1rem; 
+  }
+
+  footer .row.mt-4 {
+      margin-top: 20px;  
+  }
+
+  footer .text-center {
+      font-size: 0.875rem; 
+  }
+}
+
+
+@media (min-width: 576px) and (max-width: 992px) {
+  footer .content {
+      padding: 20px;  
+  }
+
+  footer .row {
+      flex-direction: row;  
+  }
+
+  footer .social-link {
+      font-size: 1.1rem;  
+  }
+}
+
+
+@media (min-width: 992px) {
+  footer .content {
+      padding: 30px; 
+  }
+
+  footer h5 {
+      font-size: 1.5rem;  
+  }
+
+  footer p {
+      font-size: 1.125rem;  
+  }
+
+  footer .social-link {
+      font-size: 1.2rem; 
+  }
+}

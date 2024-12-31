@@ -4,7 +4,16 @@
   
       <div class="form-group">
         <label for="post_type">Post Type:</label>
-        <input id="post_type" formControlName="post_type" required>
+        
+        <select   class="form-select  border-0" aria-label="Category" style="font-family: Georgia, 'Times New Roman', Times, serif;" formControlName="post_type">
+
+          <option value="">Select a post type</option>
+   
+          <option  value="Reels" >Reels</option>
+          <option  value="Post" >Post</option>
+  
+       </select>
+  
        
         <div *ngIf="form.get('post_type')?.invalid && (form.get('post_type')?.touched || form.get('post_type')?.dirty)" style="color: red;">
           post_type is required.

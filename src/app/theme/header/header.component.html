@@ -1,4 +1,4 @@
-<nav class=" position-fixed start-0 top-0 end-0 w-auto   shadow-sm p-3 mb-5  p-3 mb-2  " style="height: 75px;  background-color: #ffffff; font-family: Madefor,Helvetica Neue,Helvetica,Arial,メイリオ,meiryo,ヒラギノ角ゴ pro w3,hiragino kaku gothic pro,sans-serif;">
+<nav class=" position-fixed start-0 top-0 end-0 w-auto   shadow-sm p-3 mb-5  p-3 mb-2  " style="height: 75px;  background-color: #ffffff; font-family: Madefor,Helvetica Neue,Helvetica,Arial,メイリオ,meiryo,ヒラギノ角ゴ pro w3,hiragino kaku gothic pro,sans-serif;  overflow: hidden;">
   
   <div id="user" class="position-absolute start-0">
       <button class=" mb-2 bg-transparent bg-body  border-0 " (click)="home()" ><h3 class="settings-button"  style="text-transform: capitalize; ">
@@ -8,11 +8,14 @@
 
 
   
-  <div id="button" class="d-flex gap-3 position-absolute end-0">
+  <div id="button" class=" d-flex gap-3 position-absolute end-0">
+    
+    <button *ngIf="!user" class="mb-2 bg-transparent border-0 button" style="text-decoration:none; display: flex; gap: 30px;">
+      <p routerLink="/register" class="settings-button">Register</p>
+      <p routerLink="/login" class="settings-button">Login</p>
+    </button>
+    
 
-    <button *ngIf="!user" routerLink="/login" class=" mb-2 bg-transparent  border-0"  ><p class="settings-button"  >Login</p></button>
-  
-    <button *ngIf="!user" routerLink="/register" class=" mb-2 bg-transparent   border-0 " style="text-decoration:none ; "><p class="settings-button"  >Register</p></button>
     
     <div  (mouseover)="onHover(true)" (mouseleave)="onHover(false)" >
        <img *ngIf="user" [src]="'./assets/data/image/account.png'" class="mb-2 bg-transparent border-0" alt="Account Image" style="height:50px; width:50px; display:inline;" >  
